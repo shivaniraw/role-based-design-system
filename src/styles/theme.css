@@ -1,0 +1,206 @@
+/*
+ * OneHub design tokens: the ONLY values available to screens.
+ *
+ * Every default Tailwind scale is reset below, so utilities like `p-4`,
+ * `bg-blue-500` or `text-lg` do not exist. Only the role tokens in this file do.
+ *
+ * Values marked "approx" were read from screenshots, not from Figma variables,
+ * and must be checked against the Figma export (see TOKENS.md).
+ */
+@import "tailwindcss";
+
+@theme {
+  /* ---- Reset every default scale ---- */
+  --color-*: initial;
+  --spacing: initial;
+  --spacing-*: initial;
+  --radius-*: initial;
+  --text-*: initial;
+  --font-*: initial;
+  --font-weight-*: initial;
+  --shadow-*: initial;
+  --inset-shadow-*: initial;
+  --drop-shadow-*: initial;
+  --blur-*: initial;
+  --breakpoint-*: initial;
+  --container-*: initial;
+  --leading-*: initial;
+  --tracking-*: initial;
+  --ease-*: initial;
+  --animate-*: initial;
+  --perspective-*: initial;
+  --aspect-*: initial;
+
+  /* ---- Spacing: gap relations (OneHub spacing doc, 8 gap rules) ---- */
+  --spacing-subtext: 4px;
+  --spacing-attached: 8px;
+  --spacing-icon-label: 12px;
+  --spacing-related: 12px;
+  --spacing-choices: 20px;
+  --spacing-group: 28px;
+  --spacing-region: 44px;
+  --spacing-section: 80px;
+
+  /* ---- Spacing: insets (OneHub spacing doc, 9 padding tokens) ---- */
+  --spacing-inset-page: 36px;
+  --spacing-inset-panel: 40px;
+  --spacing-inset-container-x: 16px;
+  --spacing-inset-container-y: 14px;
+  --spacing-inset-control-x: 22px;
+  --spacing-inset-control-y: 10px;
+  --spacing-inset-field-x: 12px;
+  --spacing-inset-button-x: 20px;
+  --spacing-inset-badge-x: 8px;
+
+  /* ---- Spacing: exceptions (component-internal, never used in screens) ---- */
+  --spacing-profile-gap: 16px;
+  --spacing-profile-inset: 4px;
+  --spacing-option-card-x: 6px;
+  --spacing-option-card-y: 8px;
+  --spacing-card-x: 26px;
+  --spacing-modal-footer-y: 8px;
+
+  /* ---- Sizes (fixed heights: controls are centered, so no vertical padding) ---- */
+  --spacing-control-h: 44px; /* buttons (Figma: 44) */
+  --spacing-field-h: 40px; /* approx: inputs, dropdowns */
+  --spacing-textarea-h: 68px; /* approx */
+  --spacing-tab-h: 56px; /* Figma: 56 */
+  --spacing-topbar-h: 72px; /* spacing doc: 72px bar */
+  --spacing-row-h: 56px; /* approx: table body row */
+  --spacing-header-row-h: 56px; /* approx */
+  --spacing-icon: 24px; /* spacing doc: clickable icon frame */
+  --spacing-icon-sm: 16px;
+  --spacing-nav-w: 379px; /* Figma Left Nav bar width */
+  --spacing-nav-item-h: 54px; /* Figma: Nav tabs 54 (spacing doc padding-y 10 gives only 44) */
+  --spacing-modal-w: 760px; /* approx */
+  --spacing-screenshot-w: 32px;
+  --spacing-screenshot-h: 40px;
+  --spacing-badge-h: 22px;
+  --spacing-count-badge: 22px;
+  --spacing-scrollbar-h: 8px;
+  --spacing-hairline: 1px;
+  --spacing-zero: 0px; /* used as inset-zero, min-w-zero, etc. */
+  --spacing-checkbox: 20px; /* approx */
+  --spacing-upload-h: 140px; /* approx */
+  --spacing-toast-w: 416px; /* Figma Toast / Success width */
+  --spacing-avatar: 44px; /* Figma Avatar */
+  --spacing-ring: 2px;
+  --spacing-menu-w: 200px; /* approx: dropdown menus */
+  --spacing-col-xs: 68px; /* table column widths (approx) */
+  --spacing-col-sm: 120px;
+  --spacing-col-md: 168px;
+  --spacing-col-lg: 220px;
+  --spacing-col-xl: 280px;
+
+  /* ---- Colors ---- */
+  --color-action: #4285f4; /* confirmed: Google blue */
+  --color-action-hover: #3b78e7; /* derived */
+  --color-action-pressed: #3367d6; /* derived */
+  --color-action-disabled: #a9c7fa; /* approx */
+  --color-action-tint: #eef4fe; /* approx: active tab bg, outline pressed */
+  --color-on-action: #ffffff;
+
+  --color-neutral-surface: #f6f6f6; /* Figma var: --color-bg-neutral */
+  --color-neutral-surface-hover: #eeeeee; /* derived */
+  --color-neutral-disabled-text: #9e9e9e;
+
+  --color-text: #212121;
+  --color-text-secondary: #424242; /* Figma var: --color-text-secondary */
+  --color-text-muted: #757575; /* placeholder; darker than Figma's gray for AA contrast */
+
+  --color-border: #dadce0; /* approx */
+  --color-surface-page: #f5f5f5; /* approx */
+  --color-surface-card: #ffffff;
+  --color-surface-subtle: #f8f9fa; /* approx: table body rows */
+
+  --color-feedback-error: #d93025; /* error text (Rajat) */
+  --color-feedback-error-bg: #fce8e6; /* approx */
+  --color-feedback-success: #00ac4f; /* success icon (Rajat) */
+  --color-feedback-success-bg: #e6f4ea; /* approx: inline success */
+  --color-toast-success: #eeffee; /* success toast bg (Rajat) */
+  --color-toast-success-border: #49a84c; /* from Rajat's first value; role unconfirmed */
+  --color-toast-error: #fff4f3; /* error toast bg (Rajat) */
+  --color-toast-error-border: #ea4335; /* from Rajat's first value; role unconfirmed */
+
+  --color-brand-red: #ea4335; /* avatar ring only */
+  --color-brand-yellow: #fbbc05;
+  --color-brand-green: #34a853;
+
+  --color-overlay: rgb(0 0 0 / 0.4);
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  /* ---- Radius ---- */
+  --radius-control: 10px; /* Figma var: --radius-10 */
+  --radius-field: 8px; /* approx */
+  --radius-badge: 6px; /* approx */
+  --radius-panel: 20px; /* approx: card, modal */
+  --radius-pill: 9999px;
+
+  /* ---- Shadows ---- */
+  --shadow-card: 0 1px 4px rgb(0 0 0 / 0.12);
+  --shadow-popover: 0 8px 24px rgb(0 0 0 / 0.16);
+
+  /* ---- Type (Google Sans; "Button/16 Medium" confirmed in Figma) ---- */
+  --font-sans: "Google Sans", "Product Sans", "Noto Sans", system-ui, "Segoe UI",
+    "Noto Sans Devanagari", "Noto Sans Arabic", "Noto Sans CJK SC", sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  --text-title: 20px; /* approx */
+  --text-title--line-height: 28px;
+  --text-heading: 18px; /* approx */
+  --text-heading--line-height: 26px;
+  --text-nav: 16px; /* approx */
+  --text-nav--line-height: 24px;
+  --text-button: 16px; /* confirmed: Button/16 Medium */
+  --text-button--line-height: 16px;
+  --text-body: 14px; /* approx */
+  --text-body--line-height: 20px;
+  --text-table: 13px; /* approx */
+  --text-table--line-height: 18px;
+  --text-caption: 12px; /* approx */
+  --text-caption--line-height: 16px;
+
+  /* ---- Motion ---- */
+  --animate-spin: spin 1s linear infinite;
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+/* Component-level styles that Tailwind utilities cannot express with tokens. */
+@layer components {
+  .ds-avatar-ring {
+    background: conic-gradient(
+      var(--color-action),
+      var(--color-brand-green),
+      var(--color-brand-yellow),
+      var(--color-brand-red),
+      var(--color-action)
+    );
+  }
+  .ds-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-neutral-disabled-text) var(--color-neutral-surface-hover);
+  }
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+  body {
+    min-width: 1280px; /* desktop-only CMS; confirm the minimum width */
+    margin: 0;
+    background: var(--color-surface-page);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "spacing": {
+    "subtext": {
+      "$type": "dimension",
+      "$value": { "value": 4, "unit": "px" },
+      "$description": "A line of text and the smaller line under it that describes it. Examples: User Name → Admin, page title → Version 1 row."
+    },
+    "icon-label": {
+      "$type": "dimension",
+      "$value": { "value": 12, "unit": "px" },
+      "$description": "An icon or checkbox → its text label. Examples: nav icon → label, search icon → placeholder, upload icon → text, checkbox → Prod."
+    },
+    "attached": {
+      "$type": "dimension",
+      "$value": { "value": 8, "unit": "px" },
+      "$description": "Other parts of one element. Examples: logo → its name, breadcrumb items, version badge → published text, tab label → count badge, table → its scrollbar."
+    },
+    "choices": {
+      "$type": "dimension",
+      "$value": { "value": 20, "unit": "px" },
+      "$description": "Between big clickable boxes in a set. Examples: nav items, Prod ↔ Pre-Prod option boxes. Not for tabs (use spacing/group)."
+    },
+    "related": {
+      "$type": "dimension",
+      "$value": { "value": 12, "unit": "px" },
+      "$description": "A pair that does one job, items in a list, or a heading and the list it names. Examples: label → input, cards in a list, All Apps → its list, back icon → page title, two buttons side by side. Not for tabs → their content (use spacing/group)."
+    },
+    "group": {
+      "$type": "dimension",
+      "$value": { "value": 28, "unit": "px" },
+      "$description": "Different groups in the same area, stacked or side by side. Examples: field → field, Select Page ↔ Select Module, filter ↔ filter, tab ↔ tab, tabs → table, logo → language picker → app list, page title ↔ action buttons (minimum)."
+    },
+    "region": {
+      "$type": "dimension",
+      "$value": { "value": 44, "unit": "px" },
+      "$description": "Between the main blocks of a modal or card: header, filters, content, footer."
+    },
+    "section": {
+      "$type": "dimension",
+      "$value": { "value": 80, "unit": "px" },
+      "$description": "Different sections of a page. Example: Hero → Projects → About → Contact."
+    }
+  },
+  "inset": {
+    "page": {
+      "$type": "dimension",
+      "$value": { "value": 36, "unit": "px" },
+      "$description": "All sides of the page frame; left/right of the header so it lines up with the page."
+    },
+    "panel": {
+      "$type": "dimension",
+      "$value": { "value": 40, "unit": "px" },
+      "$description": "All sides of a modal; top/bottom of a card."
+    },
+    "container-x": {
+      "$type": "dimension",
+      "$value": { "value": 16, "unit": "px" },
+      "$description": "Left/right inside boxes that hold other things, like the sidebar."
+    },
+    "container-y": {
+      "$type": "dimension",
+      "$value": { "value": 14, "unit": "px" },
+      "$description": "Top/bottom inside boxes that hold other things, like the sidebar."
+    },
+    "control-x": {
+      "$type": "dimension",
+      "$value": { "value": 22, "unit": "px" },
+      "$description": "Left/right inside nav items; also the logo row and headings like All Apps, so they line up with the nav icons."
+    },
+    "control-y": {
+      "$type": "dimension",
+      "$value": { "value": 10, "unit": "px" },
+      "$description": "Top/bottom inside nav items and text areas."
+    },
+    "field-x": {
+      "$type": "dimension",
+      "$value": { "value": 12, "unit": "px" },
+      "$description": "Left/right inside inputs, dropdowns, text areas and table cells (header and body)."
+    },
+    "button-x": {
+      "$type": "dimension",
+      "$value": { "value": 20, "unit": "px" },
+      "$description": "Left/right inside buttons."
+    },
+    "badge-x": {
+      "$type": "dimension",
+      "$value": { "value": 8, "unit": "px" },
+      "$description": "Left/right inside badges like Version 1."
+    }
+  },
+  "profile": {
+    "gap": {
+      "$type": "dimension",
+      "$value": { "value": 16, "unit": "px" },
+      "$description": "Exception. Avatar → name → chevron in the profile menu."
+    },
+    "inset": {
+      "$type": "dimension",
+      "$value": { "value": 4, "unit": "px" },
+      "$description": "Exception. All sides inside the profile menu button."
+    }
+  },
+  "option-card": {
+    "inset-x": {
+      "$type": "dimension",
+      "$value": { "value": 6, "unit": "px" },
+      "$description": "Exception. Left/right inside the Prod and Pre-Prod option boxes."
+    },
+    "inset-y": {
+      "$type": "dimension",
+      "$value": { "value": 8, "unit": "px" },
+      "$description": "Exception. Top/bottom inside the Prod and Pre-Prod option boxes."
+    }
+  },
+  "card": {
+    "inset-x": {
+      "$type": "dimension",
+      "$value": { "value": 26, "unit": "px" },
+      "$description": "Exception. Left/right inside the page card."
+    }
+  },
+  "modal-footer": {
+    "inset-y": {
+      "$type": "dimension",
+      "$value": { "value": 8, "unit": "px" },
+      "$description": "Exception. Top/bottom of the modal's footer wrapper. Intentional, keep it."
+    }
+  }
+}

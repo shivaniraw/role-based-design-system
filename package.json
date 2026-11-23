@@ -1,0 +1,34 @@
+{
+  "name": "onehub-ds",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "OneHub role-based design system: React + TypeScript + Tailwind v4",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "typecheck": "tsc -b --noEmit",
+    "lint": "eslint .",
+    "test:guardrails": "node scripts/test-guardrails.mjs",
+    "check:tokens": "node scripts/check-tokens.mjs",
+    "check:screen": "node scripts/check-screen.mjs"
+  },
+  "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@tailwindcss/vite": "^4.3.5",
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "eslint": "^10.14.0",
+    "globals": "^17.14.0",
+    "tailwindcss": "^4.3.5",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.72.2",
+    "vite": "^8.3.8"
+  }
+}
