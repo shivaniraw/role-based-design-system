@@ -280,8 +280,8 @@
     {
       "name": "VersionBadge",
       "kind": "display",
-      "props": "version: number",
-      "use": "'Version 1' pill.",
+      "props": "version: number, published?: string",
+      "use": "Version pill; with `published` it holds the publish line too (Figma page header).",
       "avoid": "",
       "figma": []
     },
@@ -563,7 +563,7 @@
     {
       "name": "DataTable",
       "kind": "data",
-      "props": "columns, rows, getRowKey, ariaLabel, emptyMessage?",
+      "props": "columns, rows, getRowKey, ariaLabel, emptyMessage? (column width: 2xs 66 | xs 96 | sm 126 | md 138 | lg 174 | xl 200 | 2xl 214 | 3xl 221 | 4xl 300)",
       "use": "Table with blue header; scrolls inside its card. Build cells with the *Cell components.",
       "avoid": "Raw <table>.",
       "figma": [

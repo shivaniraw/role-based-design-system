@@ -4,17 +4,14 @@ import { Checkbox, OptionBox } from "./Checkbox";
 import { NewBadge } from "./badges/NewBadge";
 import { BaseIconButton } from "./icon-buttons/BaseIconButton";
 import { CopyKeyButton } from "./icon-buttons/CopyKeyButton";
-import { SelectField, TextArea, TextField, type FieldStatus, type SelectOption } from "./Field";
+import { TextArea } from "./Field";
+import { Listbox, type SelectOption } from "./select/Listbox";
 
-export type ColumnWidth = "xs" | "sm" | "md" | "lg" | "xl";
-
-const MIN_WIDTH: Record<ColumnWidth, string> = {
-  xs: "min-w-col-xs",
-  sm: "min-w-col-sm",
-  md: "min-w-col-md",
-  lg: "min-w-col-lg",
-  xl: "min-w-col-xl",
-};
+/**
+ * Minimum column widths from the Figma tables: 2xs 66, xs 96, sm 126, md 138, lg 174, xl 200,
+ * 2xl 214, 3xl 221, 4xl 300. Columns grow evenly when there is room.
+ */
+export type ColumnWidth = "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl";
 
 export interface Column<Row> {
   key: string;
@@ -34,81 +31,102 @@ export interface DataTableProps<Row> {
   emptyMessage?: string;
 }
 
+const track = (width: ColumnWidth) => `var(--spacing-col-${width})`;
+
 /**
- * The table scrolls sideways inside its card. The blue header and row lines are built in.
- * Cell content comes from the cell components exported below.
+ * Figma: Data Table (32:184).
+ * - Box: radius 12, 1px #E5E7EB, clips its content.
+ * - Header: 67 tall, #4C86F9, Table/Header 16 Medium white at -2%, 16 side padding, white dividers.
+ * - Rows: 80 tall, striped #F9FAFB / white starting grey, #E5E7EB row lines, #BABABA column dividers,
+ *   12 side padding, Body/14 #333333.
+ * - Wider than its card: it scrolls sideways, with the 12px scrollbar sitting below the table.
  */
 export function DataTable<Row>({ columns, rows, getRowKey, ariaLabel, emptyMessage = "Nothing to show yet." }: DataTableProps<Row>) {
+  const template = columns.map((column) => `minmax(${track(column.width)}, 1fr)`).join(" ");
+  const minWidth = `calc(${columns.map((column) => track(column.width)).join(" + ")} + 2 * var(--spacing-hairline))`;
+  const last = columns.length - 1;
+
   return (
-    <div className="ds-scroll overflow-x-auto rounded-field border border-border">
-      <table aria-label={ariaLabel} className="w-full border-collapse">
-        <thead>
-          <tr className="h-header-row-h bg-action text-left text-table font-medium text-on-action">
-            {columns.map((column) => (
-              <th key={column.key} scope="col" className={cx("px-inset-field-x font-medium", MIN_WIDTH[column.width])}>
-                <div className="flex items-center justify-between gap-attached">
-                  {column.header}
-                  {column.headerEdit ? (
-                    <BaseIconButton
-                      icon="pencil"
-                      tone="onAction"
-                      label={column.headerEdit.label}
-                      onClick={column.headerEdit.onClick}
-                    />
-                  ) : null}
-                </div>
-              </th>
+    <div className="ds-scroll overflow-x-auto pb-attached">
+      <div role="table" aria-label={ariaLabel} style={{ minWidth }} className="overflow-hidden rounded-table border border-border-subtle bg-surface-card">
+        <div role="rowgroup">
+          <div role="row" style={{ gridTemplateColumns: template }} className="grid h-header-row-h bg-action-strong">
+            {columns.map((column, index) => (
+              <div
+                key={column.key}
+                role="columnheader"
+                className={cx(
+                  "flex min-w-zero items-center gap-attached px-inset-container-x text-input font-medium tracking-tight text-on-action",
+                  index !== last && "border-r border-on-action",
+                )}
+              >
+                <span className="min-w-zero grow">{column.header}</span>
+                {column.headerEdit ? (
+                  <BaseIconButton icon="pencil" tone="onAction" label={column.headerEdit.label} onClick={column.headerEdit.onClick} />
+                ) : null}
+              </div>
             ))}
-          </tr>
-        </thead>
-        <tbody>
+          </div>
+        </div>
+        <div role="rowgroup">
           {rows.length === 0 ? (
-            <tr className="h-row-h bg-surface-subtle">
-              <td colSpan={columns.length} className="px-inset-field-x text-center text-table text-text-muted">
-                {emptyMessage}
-              </td>
-            </tr>
+            <div role="row" className="flex h-row-h items-center justify-center bg-surface-subtle text-table text-text-muted">
+              <div role="cell">{emptyMessage}</div>
+            </div>
           ) : (
-            rows.map((row, index) => (
-              <tr key={getRowKey(row, index)} className="h-row-h border-t border-border bg-surface-subtle">
-                {columns.map((column) => (
-                  <td
+            rows.map((row, rowIndex) => (
+              <div
+                key={getRowKey(row, rowIndex)}
+                role="row"
+                style={{ gridTemplateColumns: template }}
+                className={cx(
+                  "grid min-h-row-h",
+                  rowIndex % 2 === 0 ? "bg-surface-subtle" : "bg-surface-card",
+                  rowIndex !== rows.length - 1 && "border-b border-border-subtle",
+                )}
+              >
+                {columns.map((column, index) => (
+                  <div
                     key={column.key}
-                    className="border-r border-border px-inset-field-x align-middle text-table text-text last:border-r-0"
+                    role="cell"
+                    className={cx(
+                      "flex min-w-zero items-center px-inset-field-x py-inset-control-y text-table text-text",
+                      index !== last && "border-r border-border-divider",
+                    )}
                   >
-                    {column.cell(row, index)}
-                  </td>
+                    {column.cell(row, rowIndex)}
+                  </div>
                 ))}
-              </tr>
+              </div>
             ))
           )}
-        </tbody>
-      </table>
+        </div>
+      </div>
     </div>
   );
 }
 
 /**
- * Long text is cut with an ellipsis (one line by default, or two with `lines={2}`); the full text is in the tooltip.
- * `dir="auto"` handles right-to-left text.
+ * Body/14 #333333. Long text is cut with an ellipsis (one line by default, or two with `lines={2}`);
+ * the full text is in the tooltip. `dir="auto"` handles right-to-left text.
  */
 export function TextCell({ children, lines = 1 }: { children: string; lines?: 1 | 2 }) {
   return (
-    <div dir="auto" title={children} className={cx("max-w-col-md", lines === 2 ? "line-clamp-2" : "truncate")}>
+    <div dir="auto" title={children} className={cx("w-full", lines === 2 ? "line-clamp-2" : "truncate")}>
       {children}
     </div>
   );
 }
 
 export function NumberCell({ children }: { children: number }) {
-  return <div className="text-center tabular-nums">{children}</div>;
+  return <div className="w-full text-center tabular-nums">{children}</div>;
 }
 
-/** A small preview of an uploaded UI screenshot. */
+/** Figma: 31 x 61.5 thumbnail, radius 2, #BDBDBD hairline, #ECECEC when empty. */
 export function ScreenshotCell({ src, alt }: { src?: string; alt: string }) {
   return (
-    <div className="flex items-center justify-center">
-      <div className="flex h-screenshot-h w-screenshot-w items-center justify-center overflow-hidden rounded-badge border border-border bg-neutral-surface">
+    <div className="flex w-full items-center justify-center">
+      <div className="flex h-screenshot-h w-screenshot-w items-center justify-center overflow-hidden rounded-thumb border border-border-control bg-placeholder-bg">
         {src ? <img src={src} alt={alt} className="size-full object-cover" /> : null}
       </div>
     </div>
@@ -126,12 +144,12 @@ export function DropdownCell({
   value: string;
   onChange: (value: string) => void;
 }) {
-  return <SelectField ariaLabel={ariaLabel} options={options} value={value} onChange={onChange} />;
+  return <Listbox look="cell" ariaLabel={ariaLabel} options={options} value={value} onChange={onChange} />;
 }
 
 /**
- * Text input in a cell. Border shows the state: blue while empty (waiting), neutral when filled,
- * red when `error` is set.
+ * Figma: dev key input. 42 tall, radius 6, 6 padding, Body/14, #999999 placeholder.
+ * Border shows the state: #4C86F9 while empty (waiting for a key), #BDBDBD when filled, red on error.
  */
 export function InputCell({
   ariaLabel,
@@ -146,8 +164,21 @@ export function InputCell({
   error?: boolean;
   onChange: (value: string) => void;
 }) {
-  const status: FieldStatus = error ? "error" : value === "" ? "prompt" : "default";
-  return <TextField ariaLabel={ariaLabel} value={value} placeholder={placeholder} status={status} onChange={onChange} />;
+  return (
+    <input
+      type="text"
+      dir="auto"
+      aria-label={ariaLabel}
+      aria-invalid={error || undefined}
+      value={value}
+      placeholder={placeholder}
+      onChange={(event) => onChange(event.target.value)}
+      className={cx(
+        "h-cell-input-h w-full min-w-zero rounded-badge border bg-surface-card px-cell-input-x text-body text-text outline-none placeholder:text-text-placeholder focus-visible:outline-2 focus-visible:outline-action",
+        error ? "border-feedback-error" : value === "" ? "border-action-strong" : "border-border-control",
+      )}
+    />
+  );
 }
 
 export function CheckboxCell({
@@ -182,7 +213,7 @@ export function DevKeyCell({
         {flag === "updated" ? (
           <span aria-label="Recently updated" className="absolute -top-subtext left-attached size-attached rounded-pill bg-feedback-success" />
         ) : null}
-        <div dir="auto" title={devKey} className="break-words rounded-badge bg-neutral-surface px-inset-badge-x py-subtext text-caption text-text-secondary">
+        <div dir="auto" title={devKey} className="break-words rounded-badge border border-border bg-neutral-surface px-inset-badge-x py-subtext text-caption text-text-secondary">
           {devKey}
         </div>
       </div>

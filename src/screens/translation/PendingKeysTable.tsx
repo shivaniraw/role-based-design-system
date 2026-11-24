@@ -12,13 +12,13 @@ interface PendingKeysTableProps {
 
 export function PendingKeysTable({ rows, duplicateKey, onChange, onEditModules }: PendingKeysTableProps) {
   const columns: Column<PendingKey>[] = [
-    { key: "no", header: "Sr. No.", width: "xs", cell: (_row, index) => <NumberCell>{index + 1}</NumberCell> },
-    { key: "shot", header: "UI Mockup Screenshot", width: "sm", cell: (row) => <ScreenshotCell src={sampleScreenshot} alt={`Screenshot for ${row.page}`} /> },
-    { key: "page", header: "Page", width: "md", cell: (row) => <TextCell>{row.page}</TextCell> },
+    { key: "no", header: "Sr. No.", width: "2xs", cell: (_row, index) => <NumberCell>{index + 1}</NumberCell> },
+    { key: "shot", header: "UI Mockup Screenshot", width: "md", cell: (row) => <ScreenshotCell src={sampleScreenshot} alt={`Screenshot for ${row.page}`} /> },
+    { key: "page", header: "Page", width: "2xl", cell: (row) => <TextCell>{row.page}</TextCell> },
     {
       key: "module",
       header: "Module",
-      width: "md",
+      width: "3xl",
       headerEdit: { label: "Edit module details", onClick: onEditModules },
       cell: (row) => (
         <DropdownCell
@@ -29,12 +29,12 @@ export function PendingKeysTable({ rows, duplicateKey, onChange, onEditModules }
         />
       ),
     },
-    { key: "source", header: "English Source Text", width: "md", cell: (row) => <TextCell>{row.source}</TextCell> },
-    { key: "local", header: "Local Language", width: "md", cell: (row) => <TextCell>{row.local}</TextCell> },
+    { key: "source", header: "English Source Text", width: "xl", cell: (row) => <TextCell>{row.source}</TextCell> },
+    { key: "local", header: "Local Language", width: "3xl", cell: (row) => <TextCell>{row.local}</TextCell> },
     {
       key: "devKey",
       header: "Developer key",
-      width: "lg",
+      width: "4xl",
       cell: (row) => (
         <InputCell
           ariaLabel={`Developer key for row ${row.id}`}

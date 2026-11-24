@@ -10,18 +10,18 @@ interface ActiveTranslationsTableProps {
 
 export function ActiveTranslationsTable({ rows, onChange, onCopyKey, onOpen }: ActiveTranslationsTableProps) {
   const columns: Column<ActiveRow>[] = [
-    { key: "no", header: "Sr. No.", width: "xs", cell: (_row, index) => <NumberCell>{index + 1}</NumberCell> },
+    { key: "no", header: "Sr. No.", width: "2xs", cell: (_row, index) => <NumberCell>{index + 1}</NumberCell> },
     {
       key: "devKey",
       header: "Developer key",
-      width: "md",
+      width: "lg",
       cell: (row) => <DevKeyCell devKey={row.devKey} flag={row.flag} onCopy={() => onCopyKey(row.devKey)} />,
     },
-    { key: "source", header: "English SourceText", width: "sm", cell: (row) => <TextCell lines={2}>{row.source}</TextCell> },
+    { key: "source", header: "English SourceText", width: "lg", cell: (row) => <TextCell lines={2}>{row.source}</TextCell> },
     {
       key: "local",
       header: "Local Language",
-      width: "sm",
+      width: "lg",
       cell: (row) => (
         <InputCell
           ariaLabel={`Local language for ${row.devKey}`}

@@ -13,27 +13,32 @@ export interface BreadcrumbProps {
   homeHref?: string;
 }
 
-/** Home icon, chevron, then the trail. Parts of one element, so the gap is `attached`. */
+/**
+ * Figma: Top Bar breadcrumb. Home 24 (#757575), chevron 24 (#999999), title Heading/24 Regular #5C5C5C.
+ * Parts of one element, so the gap is `attached` (8).
+ */
 export function Breadcrumb({ items, homeHref = "/" }: BreadcrumbProps) {
   return (
-    <nav aria-label="Breadcrumb" className="flex items-center gap-attached text-text-muted">
-      <a href={homeHref} aria-label="Home" className="inline-flex focus-visible:outline-2 focus-visible:outline-action">
+    <nav aria-label="Breadcrumb" className="flex items-center gap-attached">
+      <a href={homeHref} aria-label="Home" className="inline-flex text-text-muted focus-visible:outline-2 focus-visible:outline-action">
         <Icon name="home" />
       </a>
       {items.map((item, index) => {
         const last = index === items.length - 1;
         return (
           <Fragment key={`${item.label}-${index}`}>
-            <Icon name="chevronRight" />
+            <span className="inline-flex text-text-placeholder">
+              <Icon name="chevronRight" />
+            </span>
             {item.href && !last ? (
               <a href={item.href} className="focus-visible:outline-2 focus-visible:outline-action">
-                <BaseText variant="heading" weight="regular" tone="secondary">
+                <BaseText variant="nav" tone="tertiary">
                   {item.label}
                 </BaseText>
               </a>
             ) : (
               <span aria-current={last ? "page" : undefined}>
-                <BaseText variant="heading" weight="regular" tone="secondary">
+                <BaseText variant="nav" tone="tertiary">
                   {item.label}
                 </BaseText>
               </span>

@@ -37,3 +37,22 @@
 - Real logo asset (placeholder mark), Google Sans web delivery (falls back to system fonts).
 - Link icon in table rows (purpose unknown), delete confirmation dialog, `navigate-back` page patterns.
 - Visual regression against Figma exports.
+
+## Matched to Figma (TMS Design System, read directly from the file)
+Colors, type sizes, radii, shadows, icons and component sizes now come from the Figma component specs
+(Left Nav bar, App Selector, Top Bar, Text Input, Select Field, Textarea, Image Upload, Checkbox Option,
+Modal / Add Translation, Tabs, Data Table, Table Cell, Table Header Cell, Cancel Button) and the TMS page
+header. Icons are exported from the Foundations page (Icon/Home, Apps, Translate, Chevrons, Upload, Edit,
+Language, Error, Success, Checkbox On/Off).
+
+## Where Figma and the spacing tokens disagree (spacing tokens kept)
+| Space | Figma | Spacing token used |
+|---|---|---|
+| Field label to input | 10 | `related` 12 |
+| Select Page to Select Module, filter to filter, tabs to table | 24 | `group` 28 |
+| Tab to tab | 30 | `group` 28 |
+| Option box side padding | 12 (component) / 6 (screen) | `option-card-x` 6 |
+| Modal footer top/bottom | 10 | `modal-footer-y` 8 |
+| Text Input / Select border | #E0E0E0 (component), #BDBDBD (screens) | #E0E0E0 |
+
+One spacing change follows Figma: "All Apps" to the nav list is now `group` (Figma 30), not `related`.

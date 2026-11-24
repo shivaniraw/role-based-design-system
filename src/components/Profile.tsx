@@ -10,7 +10,7 @@ export interface AvatarProps {
 export function Avatar({ name }: AvatarProps) {
   return (
     <span className="ds-avatar-ring inline-flex size-avatar shrink-0 rounded-pill p-ring" aria-hidden="true">
-      <span className="flex size-full items-center justify-center rounded-pill bg-surface-card text-heading font-medium text-action">
+      <span className="flex size-full items-center justify-center rounded-pill bg-surface-card text-title font-medium text-action">
         {name.trim().charAt(0).toUpperCase()}
       </span>
     </span>
@@ -38,14 +38,14 @@ export function ProfileMenu({ name, subtitle, onClick }: ProfileMenuProps) {
     >
       <Avatar name={name} />
       <Stack relation="subtext">
-        <BaseText variant="table" weight="medium" tone="secondary">
+        <BaseText variant="label" tone="tertiary">
           {name}
         </BaseText>
-        <BaseText variant="caption" tone="muted">
+        <BaseText variant="caption" tone="tertiary">
           {subtitle}
         </BaseText>
       </Stack>
-      <span className="text-text-secondary">
+      <span className="text-text-tertiary">
         <Icon name="chevronDown" />
       </span>
     </button>

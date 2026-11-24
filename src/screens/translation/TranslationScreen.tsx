@@ -10,7 +10,6 @@ import {
   ErrorBanner,
   Inline,
   LeftNav,
-  MetaText,
   Page,
   PageTitle,
   PublishButton,
@@ -157,7 +156,7 @@ export function TranslationScreen({
       <AppShell
         nav={
           <LeftNav
-            appName="OneHub Admin"
+            appName="OneHub"
             language={language}
             languageOptions={LANGUAGES}
             onLanguageChange={setLanguage}
@@ -196,33 +195,25 @@ export function TranslationScreen({
             }
           >
             <Stack relation="region">
-              <Stack relation="subtext">
-                <Split
-                  minRelation="group"
-                  start={
-                    <Inline relation="related">
-                      <BackButton label="Back" />
-                      <PageTitle>
-                        Select the page or module you want to translate
-                      </PageTitle>
-                    </Inline>
-                  }
-                  end={
-                    <Inline relation="related">
-                      <AddButton>Add Dev_key</AddButton>
-                      <AddButton onClick={() => setAddingWord(true)}>
-                        Add New Word
-                      </AddButton>
-                    </Inline>
-                  }
-                />
-                <Inline relation="attached">
-                  <VersionBadge version={1} />
-                  <MetaText>
-                    Published on: 23 Apr 2026, 15:30 IST by Admin
-                  </MetaText>
-                </Inline>
-              </Stack>
+              <Split
+                minRelation="group"
+                align="start"
+                start={
+                  <Inline relation="related" align="start">
+                    <BackButton label="Back" />
+                    <Stack relation="subtext">
+                      <PageTitle>Select the page or module you want to translate</PageTitle>
+                      <VersionBadge version={1} published="Published on: 23 Apr 2026, 15:30 IST by Admin" />
+                    </Stack>
+                  </Inline>
+                }
+                end={
+                  <Inline relation="related">
+                    <AddButton>Add Dev_key</AddButton>
+                    <AddButton onClick={() => setAddingWord(true)}>Add New Word</AddButton>
+                  </Inline>
+                }
+              />
 
               <Stack relation="group">
                 <Inline relation="group">

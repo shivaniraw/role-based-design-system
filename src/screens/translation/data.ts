@@ -29,10 +29,10 @@ export interface ActiveRow {
 }
 
 export const NAV_ITEMS: NavEntry[] = [
-  { id: "prod", label: "OneHub", icon: "home" },
-  { id: "preprod", label: "OneHub - PreProd", icon: "home" },
-  { id: "testing", label: "OneHub - Testing", icon: "home" },
-  { id: "notifications", label: "Notification Dashboard", icon: "bell" },
+  { id: "home", label: "Home", icon: "home" },
+  { id: "testing", label: "OneHub - Testing", icon: "apps" },
+  { id: "preprod", label: "OneHub - Pre-Prod", icon: "apps" },
+  { id: "prod", label: "OneHub - Prod", icon: "apps" },
 ];
 
 export const LANGUAGES: SelectOption[] = [

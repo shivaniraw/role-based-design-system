@@ -10,7 +10,7 @@ interface AddNewWordModalProps {
 }
 
 export function AddNewWordModal({ languageName, onClose, onSave }: AddNewWordModalProps) {
-  const [page, setPage] = useState(PAGES[0]?.value ?? "");
+  const [page, setPage] = useState("");
   const [module, setModule] = useState("");
   const [source, setSource] = useState("");
   const [local, setLocal] = useState("");
@@ -32,13 +32,13 @@ export function AddNewWordModal({ languageName, onClose, onSave }: AddNewWordMod
       <Stack relation="group">
         <Inline relation="group" align="start">
           <Box inset="none" grow>
-            <SelectField label="Select Page" required options={PAGES} value={page} onChange={setPage} />
+            <SelectField label="Select Page" required options={PAGES} placeholder="Select Page" value={page} onChange={setPage} />
           </Box>
           <Box inset="none" grow>
             <SelectField label="Select Module" options={MODULES} placeholder="Select Module" value={module} onChange={setModule} />
           </Box>
         </Inline>
-        <TextField label="English Source Text" required placeholder="Enter source text" value={source} onChange={setSource} />
+        <TextField label="English Source Text" required placeholder="Enter Source Text" value={source} onChange={setSource} />
         <TextArea label={`Local Language Translation (${languageName})`} required placeholder="Enter translation" value={local} onChange={setLocal} />
         <FileUpload
           label="UI Screenshot"
@@ -52,10 +52,10 @@ export function AddNewWordModal({ languageName, onClose, onSave }: AddNewWordMod
           </GroupLabel>
           <Inline relation="choices">
             <Box inset="none" grow>
-              <OptionBox label="Prod" defaultChecked />
+              <OptionBox label="Prod" />
             </Box>
             <Box inset="none" grow>
-              <OptionBox label="Pre-Prod" defaultChecked />
+              <OptionBox label="Pre-Prod" />
             </Box>
           </Inline>
         </Stack>

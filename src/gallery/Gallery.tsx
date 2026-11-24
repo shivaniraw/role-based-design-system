@@ -108,13 +108,13 @@ function Components() {
   const [toast, setToast] = useState(false);
 
   const columns: Column<DemoRow>[] = [
-    { key: "n", header: "Sr. No.", width: "xs", cell: (_r, i) => <NumberCell>{i + 1}</NumberCell> },
-    { key: "shot", header: "Screenshot", width: "sm", cell: (r) => <ScreenshotCell alt={r.page} /> },
-    { key: "page", header: "Page", width: "md", cell: (r) => <TextCell>{r.page}</TextCell> },
+    { key: "n", header: "Sr. No.", width: "2xs", cell: (_r, i) => <NumberCell>{i + 1}</NumberCell> },
+    { key: "shot", header: "Screenshot", width: "md", cell: (r) => <ScreenshotCell alt={r.page} /> },
+    { key: "page", header: "Page", width: "2xl", cell: (r) => <TextCell>{r.page}</TextCell> },
     {
       key: "module",
       header: "Module",
-      width: "md",
+      width: "3xl",
       headerEdit: { label: "Edit module details", onClick: () => undefined },
       cell: (r) => (
         <DropdownCell
@@ -128,7 +128,7 @@ function Components() {
     {
       key: "key",
       header: "Developer key",
-      width: "lg",
+      width: "4xl",
       cell: (r) => (
         <InputCell
           ariaLabel="Developer key"

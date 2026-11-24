@@ -45,8 +45,8 @@ const CLASS_PATTERNS = [
   },
   {
     id: "default font weight",
-    re: /(?:^|[\s:])font-(?:thin|extralight|light|normal|semibold|bold|extrabold|black)(?=\s|$)/,
-    hint: "Only font-regular and font-medium exist.",
+    re: /(?:^|[\s:])font-(?:thin|extralight|light|normal|semibold|extrabold|black)(?=\s|$)/,
+    hint: "Only font-regular, font-medium and font-bold exist.",
   },
   {
     id: "responsive prefix",

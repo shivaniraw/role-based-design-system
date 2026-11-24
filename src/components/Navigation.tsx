@@ -7,19 +7,16 @@ import { Stack } from "../primitives/Stack";
 import { BaseText } from "../primitives/text/BaseText";
 import { Breadcrumb, type BreadcrumbItem } from "./Breadcrumb";
 import { ProfileMenu } from "./Profile";
-import type { SelectOption } from "./Field";
+import { Listbox, type SelectOption } from "./select/Listbox";
 
-/** Placeholder mark. Replace with the real OneHub logo asset. */
+/** Figma: Logo (32:60) + brand name. Blue 43 x 42 tile, radius 8, white translate mark; name Display/28 Medium. */
 export function Logo({ name }: { name: string }) {
   return (
     <div className="flex items-center gap-attached">
-      <svg viewBox="0 0 44 44" className="size-avatar shrink-0" fill="none" strokeWidth={6} aria-hidden="true">
-        <path d="M22 8a14 14 0 0 1 14 14" className="stroke-action" />
-        <path d="M36 22a14 14 0 0 1-14 14" className="stroke-brand-green" />
-        <path d="M22 36A14 14 0 0 1 8 22" className="stroke-brand-yellow" />
-        <path d="M8 22A14 14 0 0 1 22 8" className="stroke-brand-red" />
-      </svg>
-      <BaseText variant="title" weight="regular" tone="secondary">
+      <span className="flex h-logo-h w-logo-w shrink-0 items-center justify-center rounded-field bg-action text-on-action" aria-hidden="true">
+        <Icon name="translate" />
+      </span>
+      <BaseText variant="display" tracking="nav">
         {name}
       </BaseText>
     </div>
@@ -33,27 +30,9 @@ export interface AppSelectorProps {
   ariaLabel: string;
 }
 
-/** The pill dropdown at the top of the nav (language). */
+/** Figma: App Selector (32:56). The pill dropdown at the top of the nav (language). */
 export function AppSelector({ value, options, onChange, ariaLabel }: AppSelectorProps) {
-  return (
-    <div className="flex h-field-h w-full items-center rounded-pill border border-border bg-surface-card px-inset-field-x focus-within:outline-2 focus-within:outline-action">
-      <select
-        aria-label={ariaLabel}
-        value={value}
-        onChange={(event) => onChange(event.target.value)}
-        className="h-full min-w-zero grow cursor-pointer appearance-none bg-transparent text-body text-text-secondary outline-none"
-      >
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
-      <span className="pointer-events-none text-text-secondary">
-        <Icon name="chevronDown" />
-      </span>
-    </div>
-  );
+  return <Listbox look="selector" options={options} value={value} onChange={onChange} ariaLabel={ariaLabel} />;
 }
 
 export interface NavEntry {
@@ -62,6 +41,10 @@ export interface NavEntry {
   icon: IconName;
 }
 
+/**
+ * Figma: Nav tabs (32:55). 54 tall, 22 side padding, 24 icon + 12 gap + Nav/24 Regular #424242.
+ * Selected: #F2F7FF fill, radius 8, blue text and icon.
+ */
 function NavItem({ entry, selected, onSelect }: { entry: NavEntry; selected: boolean; onSelect: (id: string) => void }) {
   return (
     <button
@@ -69,12 +52,12 @@ function NavItem({ entry, selected, onSelect }: { entry: NavEntry; selected: boo
       aria-current={selected ? "page" : undefined}
       onClick={() => onSelect(entry.id)}
       className={cx(
-        "flex h-nav-item-h w-full cursor-pointer items-center gap-icon-label rounded-control px-inset-control-x text-left text-nav focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-action",
-        selected ? "bg-action-tint text-action" : "text-text-secondary hover:bg-neutral-surface",
+        "flex h-nav-item-h w-full cursor-pointer items-center gap-icon-label rounded-field px-inset-control-x text-left focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-action",
+        selected ? "bg-action-subtle text-action" : "text-text-secondary hover:bg-neutral-surface",
       )}
     >
       <Icon name={entry.icon} />
-      {entry.label}
+      <span className="min-w-zero grow truncate text-nav tracking-nav">{entry.label}</span>
     </button>
   );
 }
@@ -92,8 +75,8 @@ export interface LeftNavProps {
 }
 
 /**
- * Left navigation. Spacing per the spacing doc: sidebar inset 16 / 14; logo row, language and
- * "All Apps" are `group` apart; heading to first item is `related`; items are `choices` apart.
+ * Figma: Left Nav bar (32:63). 379 wide, white, 1px right border, inset 16 across / 14 down.
+ * Brand, selector, "All Apps" and the list are `group` apart (Figma shows ~30); items are `choices` apart.
  */
 export function LeftNav({
   appName,
@@ -106,21 +89,21 @@ export function LeftNav({
   onSelect,
 }: LeftNavProps) {
   return (
-    <aside className="flex w-nav-w shrink-0 flex-col bg-surface-card px-inset-container-x py-inset-container-y">
+    <aside className="flex w-nav-w shrink-0 flex-col border-r border-border-tab bg-surface-card px-inset-container-x py-inset-container-y">
       <Stack relation="group">
-        <Box inset="controlX">
+        <Box inset="control">
           <Logo name={appName} />
         </Box>
         <AppSelector value={language} options={languageOptions} onChange={onLanguageChange} ariaLabel="Language" />
-        <Stack relation="related" as="nav" aria-label={sectionLabel}>
-          <Box inset="controlX">
-            <BaseText variant="nav">{sectionLabel}</BaseText>
-          </Box>
-          <Stack relation="choices">
-            {items.map((entry) => (
-              <NavItem key={entry.id} entry={entry} selected={entry.id === selectedId} onSelect={onSelect} />
-            ))}
-          </Stack>
+        <Box inset="controlX">
+          <BaseText variant="label" tone="muted">
+            {sectionLabel}
+          </BaseText>
+        </Box>
+        <Stack relation="choices" as="nav" aria-label={sectionLabel}>
+          {items.map((entry) => (
+            <NavItem key={entry.id} entry={entry} selected={entry.id === selectedId} onSelect={onSelect} />
+          ))}
         </Stack>
       </Stack>
     </aside>

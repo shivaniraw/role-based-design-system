@@ -60,58 +60,78 @@
   --spacing-card-x: 26px;
   --spacing-modal-footer-y: 8px;
 
-  /* ---- Sizes (fixed heights: controls are centered, so no vertical padding) ---- */
-  --spacing-control-h: 44px; /* buttons (Figma: 44) */
-  --spacing-field-h: 40px; /* approx: inputs, dropdowns */
-  --spacing-textarea-h: 68px; /* approx */
-  --spacing-tab-h: 56px; /* Figma: 56 */
-  --spacing-topbar-h: 72px; /* spacing doc: 72px bar */
-  --spacing-row-h: 56px; /* approx: table body row */
-  --spacing-header-row-h: 56px; /* approx */
-  --spacing-icon: 24px; /* spacing doc: clickable icon frame */
+  /* ---- Sizes. "Figma" values come from the TMS Design System component specs. ---- */
+  --spacing-control-h: 44px; /* Figma: buttons */
+  --spacing-field-h: 40px; /* Figma: Text Input, Select Field, Checkbox Option */
+  --spacing-cell-input-h: 42px; /* Figma: dev key input in a table cell */
+  --spacing-selector-h: 54px; /* Figma: App Selector */
+  --spacing-textarea-h: 68px; /* Figma: Textarea Field */
+  --spacing-tab-h: 56px; /* Figma: Tab */
+  --spacing-topbar-h: 72px; /* Figma: Top Bar */
+  --spacing-row-h: 80px; /* Figma: Table Cell */
+  --spacing-header-row-h: 67px; /* Figma: Table Header Cell */
+  --spacing-icon: 24px; /* Figma: Icon/* frame */
   --spacing-icon-sm: 16px;
-  --spacing-nav-w: 379px; /* Figma Left Nav bar width */
-  --spacing-nav-item-h: 54px; /* Figma: Nav tabs 54 (spacing doc padding-y 10 gives only 44) */
-  --spacing-modal-w: 760px; /* approx */
-  --spacing-screenshot-w: 32px;
-  --spacing-screenshot-h: 40px;
+  --spacing-icon-field: 20px; /* Figma: chevron inside selects */
+  --spacing-icon-lg: 36px; /* Figma: upload icon */
+  --spacing-logo-w: 43px; /* Figma: Logo */
+  --spacing-logo-h: 42px;
+  --spacing-nav-w: 379px; /* Figma: Left Nav bar */
+  --spacing-nav-item-h: 54px; /* Figma: Nav tabs (selected is 51 in Figma; kept 54 so rows don't jump) */
+  --spacing-modal-w: 784px; /* Figma: 704 form + 40 panel inset each side */
+  --spacing-screenshot-w: 31px; /* Figma: table thumbnail 31 x 61.5 */
+  --spacing-screenshot-h: 62px;
   --spacing-badge-h: 22px;
-  --spacing-count-badge: 22px;
-  --spacing-scrollbar-h: 8px;
+  --spacing-version-h: 32px; /* Figma: version pill */
+  --spacing-count-badge: 22px; /* Figma: tab badge 22 x 22 */
+  --spacing-scrollbar-h: 12px; /* Figma: Scrollbar track */
   --spacing-hairline: 1px;
   --spacing-zero: 0px; /* used as inset-zero, min-w-zero, etc. */
-  --spacing-checkbox: 20px; /* approx */
-  --spacing-upload-h: 140px; /* approx */
-  --spacing-toast-w: 416px; /* Figma Toast / Success width */
-  --spacing-avatar: 44px; /* Figma Avatar */
+  --spacing-checkbox: 18px; /* Figma: checkbox glyph inside its 24 frame */
+  --spacing-upload-h: 100px; /* Figma: Image Upload in the modal, 704 x 100 */
+  --spacing-toast-w: 416px; /* Figma: Toast / Success */
+  --spacing-avatar: 44px; /* Figma: Avatar */
   --spacing-ring: 2px;
-  --spacing-menu-w: 200px; /* approx: dropdown menus */
-  --spacing-col-xs: 68px; /* table column widths (approx) */
-  --spacing-col-sm: 120px;
-  --spacing-col-md: 168px;
-  --spacing-col-lg: 220px;
-  --spacing-col-xl: 280px;
+  --spacing-menu-max-h: 320px; /* dropdown menus scroll past this */
+  --spacing-cell-input-x: 6px; /* Figma exception: dev key input padding */
 
-  /* ---- Colors ---- */
-  --color-action: #4285f4; /* confirmed: Google blue */
+  /* ---- Colors (Figma component specs) ---- */
+  --color-action: #4285f4; /* Google blue: buttons, active tab underline, focus */
   --color-action-hover: #3b78e7; /* derived */
   --color-action-pressed: #3367d6; /* derived */
-  --color-action-disabled: #a9c7fa; /* approx */
-  --color-action-tint: #eef4fe; /* approx: active tab bg, outline pressed */
+  --color-action-disabled: #a9c7fa; /* Figma shows 50% opacity of #4285f4 */
+  --color-action-strong: #4c86f9; /* Figma: table header, active tab label, dev key input border */
+  --color-action-tint: #f1f7ff; /* Figma: tab bar, cancel pressed */
+  --color-action-subtle: #f2f7ff; /* Figma: selected nav item */
   --color-on-action: #ffffff;
 
-  --color-neutral-surface: #f6f6f6; /* Figma var: --color-bg-neutral */
-  --color-neutral-surface-hover: #eeeeee; /* derived */
+  --color-neutral-surface: #f6f6f6;
+  --color-neutral-surface-hover: #eeeeee;
   --color-neutral-disabled-text: #9e9e9e;
 
-  --color-text: #212121;
-  --color-text-secondary: #424242; /* Figma var: --color-text-secondary */
-  --color-text-muted: #757575; /* placeholder; darker than Figma's gray for AA contrast */
+  --color-text: #333333; /* Figma: text primary */
+  --color-text-secondary: #424242; /* Figma: nav items, checkbox labels, dropdown values */
+  --color-text-tertiary: #5c5c5c; /* Figma: breadcrumb, profile, upload text */
+  --color-text-muted: #757575; /* Figma: field labels, inactive tabs, icons */
+  --color-text-subtle: #7c7c7c; /* Figma: App Selector label */
+  --color-text-placeholder: #999999; /* Figma: placeholders, breadcrumb chevron */
+  --color-required: #ea4335; /* Figma: required asterisk */
 
-  --color-border: #dadce0; /* approx */
-  --color-surface-page: #f5f5f5; /* approx */
+  --color-border: #e0e0e0; /* Figma: inputs */
+  --color-border-control: #bdbdbd; /* Figma: dropdown in a table cell, thumbnail */
+  --color-border-strong: #999999; /* Figma: Checkbox Option */
+  --color-border-dashed: #bebebe; /* Figma: upload drop zone, App Selector */
+  --color-border-divider: #bababa; /* Figma: table column dividers */
+  --color-border-subtle: #e5e7eb; /* Figma: table outline and row lines */
+  --color-border-tab: #d9d9d9; /* Figma: inactive tab underline */
+  --color-badge-muted: #999999; /* Figma: inactive tab badge */
+  --color-surface-page: #f5f5f5;
   --color-surface-card: #ffffff;
-  --color-surface-subtle: #f8f9fa; /* approx: table body rows */
+  --color-surface-subtle: #f9fafb; /* Figma: striped table rows */
+  --color-placeholder-bg: #ececec; /* Figma: empty thumbnail */
+  --color-badge-segment: #eaeaea; /* Figma: "Version 1" segment of the version pill */
+  --color-scroll-track: #ececec; /* Figma: Scrollbar */
+  --color-scroll-thumb: #d0d0d0;
 
   --color-feedback-error: #d93025; /* error text (Rajat) */
   --color-feedback-error-bg: #fce8e6; /* approx */
@@ -130,37 +150,52 @@
   --color-transparent: transparent;
   --color-current: currentColor;
 
-  /* ---- Radius ---- */
-  --radius-control: 10px; /* Figma var: --radius-10 */
-  --radius-field: 8px; /* approx */
-  --radius-badge: 6px; /* approx */
-  --radius-panel: 20px; /* approx: card, modal */
+  /* ---- Radius (Figma) ---- */
+  --radius-control: 10px; /* buttons, tab badges */
+  --radius-field: 8px; /* inputs, selects, option boxes, nav items */
+  --radius-table: 12px; /* data table */
+  --radius-upload: 14px; /* upload drop zone */
+  --radius-badge: 6px; /* version badge, dev key input */
+  --radius-thumb: 2px; /* table thumbnail */
+  --radius-panel: 20px; /* card, modal */
   --radius-pill: 9999px;
 
-  /* ---- Shadows ---- */
+  /* ---- Shadows (Figma effect styles) ---- */
   --shadow-card: 0 1px 4px rgb(0 0 0 / 0.12);
   --shadow-popover: 0 8px 24px rgb(0 0 0 / 0.16);
+  --shadow-input: 0 0 2px rgb(0 0 0 / 0.1); /* Figma: Shadow/Input */
+  --shadow-dropdown: 0 0 4px rgb(0 0 0 / 0.1); /* Figma: Shadow/Dropdown */
+  --shadow-selector: 0 0 4px 1px rgb(0 0 0 / 0.1); /* Figma: Shadow/Selector */
 
   /* ---- Type (Google Sans; "Button/16 Medium" confirmed in Figma) ---- */
   --font-sans: "Google Sans", "Product Sans", "Noto Sans", system-ui, "Segoe UI",
     "Noto Sans Devanagari", "Noto Sans Arabic", "Noto Sans CJK SC", sans-serif;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
+  --font-weight-bold: 700; /* Figma: "Version 1" in the version pill */
 
-  --text-title: 20px; /* approx */
-  --text-title--line-height: 28px;
-  --text-heading: 18px; /* approx */
-  --text-heading--line-height: 26px;
-  --text-nav: 16px; /* approx */
-  --text-nav--line-height: 24px;
-  --text-button: 16px; /* confirmed: Button/16 Medium */
-  --text-button--line-height: 16px;
-  --text-body: 14px; /* approx */
-  --text-body--line-height: 20px;
-  --text-table: 13px; /* approx */
-  --text-table--line-height: 18px;
-  --text-caption: 12px; /* approx */
-  --text-caption--line-height: 16px;
+  --text-display: 28px; /* Figma: Display/28 Medium (brand name) */
+  --text-display--line-height: 1.25;
+  --text-nav: 24px; /* Figma: Nav/24 Regular, Heading/24 Regular (breadcrumb) */
+  --text-nav--line-height: 1.25;
+  --text-title: 20px; /* Figma: Title/20 Medium */
+  --text-title--line-height: 1.25;
+  --text-heading: 18px; /* Figma: Tab/18 Medium */
+  --text-heading--line-height: 1.25;
+  --text-input: 16px; /* Figma: Input/16 Regular, Table/Header 16 Medium */
+  --text-input--line-height: 1.3;
+  --text-button: 16px; /* Figma: Button/16 Medium */
+  --text-button--line-height: 1;
+  --text-body: 14px; /* Figma: Body/14 Regular, Label/14 Medium */
+  --text-body--line-height: 1.3;
+  --text-table: 14px; /* Figma: table cells use Body/14 */
+  --text-table--line-height: 1.3;
+  --text-caption: 12px; /* Figma: Caption/12 Regular */
+  --text-caption--line-height: 1.25;
+
+  --tracking-nav: 0.3px; /* Figma: nav items, brand name */
+  --tracking-tab: 0.1px; /* Figma: tabs */
+  --tracking-tight: -0.02em; /* Figma: table header, checkbox labels */
 
   /* ---- Motion ---- */
   --animate-spin: spin 1s linear infinite;
@@ -169,6 +204,22 @@
       transform: rotate(360deg);
     }
   }
+}
+
+/* Emitted even though no utility uses them: DataTable builds its grid columns from these. */
+@theme static {
+  /* Table column widths, from the Figma tables:
+     Data Table 66 / 138 / 214 / 221 / 200 / 221 / 300; Active Translation 66 / 170 / 176 / 174 / 126 / 126 / 96 */
+  --spacing-col-2xs: 66px;
+  --spacing-col-xs: 96px;
+  --spacing-col-sm: 126px;
+  --spacing-col-md: 138px;
+  --spacing-col-lg: 174px;
+  --spacing-col-xl: 200px;
+  --spacing-col-2xl: 214px;
+  --spacing-col-3xl: 221px;
+  --spacing-col-4xl: 300px;
+  --spacing-hairline: 1px;
 }
 
 /* Component-level styles that Tailwind utilities cannot express with tokens. */
@@ -182,9 +233,23 @@
       var(--color-action)
     );
   }
-  .ds-scroll {
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-neutral-disabled-text) var(--color-neutral-surface-hover);
+  /* Figma Scrollbar: 12px track #ECECEC, thumb #D0D0D0, radius 9. */
+  /* Chrome/Safari use the ::-webkit-scrollbar rules; setting scrollbar-color would disable them. */
+  @supports (-moz-appearance: none) {
+    .ds-scroll {
+      scrollbar-color: var(--color-scroll-thumb) var(--color-scroll-track);
+    }
+  }
+  .ds-scroll::-webkit-scrollbar {
+    height: var(--spacing-scrollbar-h);
+  }
+  .ds-scroll::-webkit-scrollbar-track {
+    background: var(--color-scroll-track);
+    border-radius: 9px;
+  }
+  .ds-scroll::-webkit-scrollbar-thumb {
+    background: var(--color-scroll-thumb);
+    border-radius: 9px;
   }
 }
 

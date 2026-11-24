@@ -17,8 +17,10 @@ export interface ModalProps {
 }
 
 /**
- * Modal dialog. Padding is the `panel` inset on all sides; header, form and footer are
- * separated by the `region` gap. Escape closes; focus is trapped and restored.
+ * Modal dialog (Figma: Modal / Add Translation, 704 form + 40 panel inset = 784 wide).
+ * Header, form and footer are `region` apart. Header and footer stay put; only the form scrolls
+ * when the window is short, so the rounded corners are never cut by a scrollbar.
+ * Escape closes; focus is trapped and restored.
  */
 export function Modal({ title, onClose, children, footer, dismissOnOverlay = false }: ModalProps) {
   const titleId = useId();
@@ -28,8 +30,8 @@ export function Modal({ title, onClose, children, footer, dismissOnOverlay = fal
     const previous = document.activeElement as HTMLElement | null;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    const first = dialog.current?.querySelector<HTMLElement>(FOCUSABLE);
-    (first ?? dialog.current)?.focus();
+    // Focus the dialog itself: screen readers announce its title, and no control shows a focus ring on open.
+    dialog.current?.focus();
 
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -59,7 +61,7 @@ export function Modal({ title, onClose, children, footer, dismissOnOverlay = fal
 
   return (
     <div
-      className="fixed inset-zero z-40 flex items-center justify-center bg-overlay"
+      className="fixed inset-zero z-40 flex items-center justify-center bg-overlay p-inset-page"
       onMouseDown={(event) => {
         if (dismissOnOverlay && event.target === event.currentTarget) onClose();
       }}
@@ -70,18 +72,20 @@ export function Modal({ title, onClose, children, footer, dismissOnOverlay = fal
         aria-modal="true"
         aria-labelledby={titleId}
         tabIndex={-1}
-        className="flex max-h-full w-modal-w flex-col gap-region overflow-y-auto rounded-panel bg-surface-card p-inset-panel shadow-popover outline-none"
+        className="flex max-h-full w-modal-w max-w-full flex-col gap-region overflow-hidden rounded-panel bg-surface-card py-inset-panel shadow-popover outline-none"
       >
-        <Split
-          start={
-            <BaseText variant="heading" as="h2" id={titleId}>
-              {title}
-            </BaseText>
-          }
-          end={<CloseButton label="Close" onClick={onClose} />}
-        />
-        {children}
-        {footer}
+        <div className="shrink-0 px-inset-panel">
+          <Split
+            start={
+              <BaseText variant="title" as="h2" id={titleId}>
+                {title}
+              </BaseText>
+            }
+            end={<CloseButton label="Close" onClick={onClose} />}
+          />
+        </div>
+        <div className="ds-scroll min-h-zero grow overflow-y-auto px-inset-panel">{children}</div>
+        <div className="shrink-0 px-inset-panel">{footer}</div>
       </div>
     </div>
   );

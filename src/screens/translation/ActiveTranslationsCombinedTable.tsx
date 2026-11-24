@@ -16,14 +16,14 @@ export function ActiveTranslationsCombinedTable({ rows, onChange, onToggleAll, o
     {
       key: "devKey",
       header: "Developer key",
-      width: "md",
+      width: "xl",
       cell: (row) => <DevKeyCell devKey={row.devKey} onCopy={() => onCopyKey(row.devKey)} />,
     },
-    { key: "source", header: "English SourceText", width: "md", cell: (row) => <TextCell lines={2}>{row.source}</TextCell> },
+    { key: "source", header: "English SourceText", width: "lg", cell: (row) => <TextCell lines={2}>{row.source}</TextCell> },
     {
       key: "local",
       header: "Local Language",
-      width: "lg",
+      width: "3xl",
       cell: (row) => (
         <TextAreaCell ariaLabel={`Local language for ${row.devKey}`} value={row.local} onChange={(local) => onChange(row.id, { local })} />
       ),
@@ -31,7 +31,7 @@ export function ActiveTranslationsCombinedTable({ rows, onChange, onToggleAll, o
     {
       key: "environments",
       header: <Checkbox label="Apply to Environments" checked={allApplied} onChange={onToggleAll} onAction />,
-      width: "xl",
+      width: "4xl",
       cell: (row) => (
         <EnvironmentPairCell
           ariaLabel={`Apply ${row.devKey} to environments`}

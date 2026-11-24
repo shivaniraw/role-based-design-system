@@ -1,4 +1,5 @@
 import { useId, useState, type ReactNode } from "react";
+import { Listbox, type SelectOption } from "./select/Listbox";
 import { Icon, type IconName } from "../icons";
 import { cx } from "../lib/cx";
 import { Stack } from "../primitives/Stack";
@@ -19,7 +20,7 @@ const BORDER: Record<FieldStatus, string> = {
   valid: "border-border",
   error: "border-feedback-error",
   disabled: "border-border bg-neutral-surface",
-  readonly: "border-border bg-neutral-surface",
+  readonly: "border-transparent bg-neutral-surface shadow-dropdown",
 };
 
 type NameProps =
@@ -62,9 +63,9 @@ function FieldShell({
   if (!label) return control;
   return (
     <Stack relation="related">
-      <label htmlFor={id} className="text-body font-medium text-text-secondary">
+      <label htmlFor={id} className="text-body font-medium text-text-muted">
         {label}
-        {required ? <span className="text-feedback-error">*</span> : null}
+        {required ? <span className="text-required">*</span> : null}
       </label>
       {control}
     </Stack>
@@ -89,7 +90,7 @@ function FieldBox({
   return (
     <div
       className={cx(
-        "flex h-field-h w-full items-center gap-attached rounded-field border bg-surface-card px-inset-field-x focus-within:outline-2 focus-within:outline-action",
+        "flex h-field-h w-full items-center gap-attached rounded-field border bg-surface-card px-inset-field-x shadow-input focus-within:outline-2 focus-within:outline-action",
         BORDER[status],
       )}
     >
@@ -112,8 +113,9 @@ function FieldBox({
   );
 }
 
+/** Figma: Input/16 Regular, #333333 filled, #999999 placeholder. */
 const INPUT =
-  "h-full min-w-zero grow basis-zero bg-transparent text-body text-text outline-none placeholder:text-text-muted disabled:text-neutral-disabled-text";
+  "h-full min-w-zero grow basis-zero bg-transparent text-input text-text outline-none placeholder:text-text-placeholder read-only:text-text-muted disabled:text-neutral-disabled-text";
 
 export type TextFieldProps = NameProps &
   FieldCommon & {
@@ -166,10 +168,7 @@ export function TextField({
   );
 }
 
-export interface SelectOption {
-  value: string;
-  label: string;
-}
+export type { SelectOption };
 
 export type SelectFieldProps = NameProps &
   FieldCommon & {
@@ -199,37 +198,23 @@ export function SelectField({
   const current = value ?? inner;
   return (
     <FieldShell id={id} label={label} required={required} message={message} status={status}>
-      <FieldBox status={status}>
-        <select
-          id={id}
-          name={name}
-          className={cx(INPUT, "cursor-pointer appearance-none", current === "" && "text-text-muted")}
-          value={current}
-          disabled={status === "disabled" || status === "readonly"}
-          required={required}
-          aria-label={label ? undefined : ariaLabel}
-          aria-invalid={status === "error" || undefined}
-          aria-describedby={message ? `${id}-message` : undefined}
-          onChange={(event) => {
-            setInner(event.target.value);
-            onChange?.(event.target.value);
-          }}
-        >
-          {placeholder ? (
-            <option value="" disabled>
-              {placeholder}
-            </option>
-          ) : null}
-          {options.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-        <span className="pointer-events-none text-text-secondary">
-          <Icon name="chevronDown" />
-        </span>
-      </FieldBox>
+      <Listbox
+        look="field"
+        id={id}
+        name={name}
+        options={options}
+        value={current}
+        placeholder={placeholder}
+        ariaLabel={label ? undefined : ariaLabel}
+        ariaDescribedBy={message ? `${id}-message` : undefined}
+        invalid={status === "error"}
+        disabled={status === "disabled" || status === "readonly"}
+        borderClass={BORDER[status]}
+        onChange={(next) => {
+          setInner(next);
+          onChange?.(next);
+        }}
+      />
     </FieldShell>
   );
 }
@@ -262,7 +247,7 @@ export function TextArea({
         name={name}
         dir="auto"
         className={cx(
-          "min-h-textarea-h w-full resize-y rounded-field border bg-surface-card px-inset-field-x py-inset-control-y text-body text-text outline-none placeholder:text-text-muted focus-visible:outline-2 focus-visible:outline-action disabled:text-neutral-disabled-text",
+          "min-h-textarea-h w-full resize-y rounded-field border bg-surface-card px-inset-field-x py-inset-control-y text-input text-text shadow-input outline-none placeholder:text-text-placeholder focus-visible:outline-2 focus-visible:outline-action disabled:text-neutral-disabled-text",
           BORDER[status],
         )}
         value={value}
