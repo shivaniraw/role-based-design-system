@@ -59,6 +59,7 @@
   --spacing-option-card-y: 8px;
   --spacing-card-x: 26px;
   --spacing-modal-footer-y: 8px;
+  --spacing-new-badge-clear: 18px; /* dev key chip: top padding that starts the text below the New pill on its top-right corner */
 
   /* ---- Sizes. "Figma" values come from the TMS Design System component specs. ---- */
   --spacing-control-h: 44px; /* Figma: buttons */

@@ -195,7 +195,7 @@ export function CheckboxCell({
 
 /**
  * A developer key shown as a chip with a "copy key" button.
- * `flag` marks keys that changed recently: "new" shows a green "New" pill, "updated" a green dot.
+ * `flag` marks keys that changed recently: "new" shows a green "New" pill on the chip's top-right corner, "updated" a green dot.
  */
 export function DevKeyCell({
   devKey,
@@ -208,13 +208,26 @@ export function DevKeyCell({
 }) {
   return (
     <div className="flex items-center gap-related">
-      <div className="relative flex min-w-zero grow flex-col items-start gap-subtext">
-        {flag === "new" ? <NewBadge /> : null}
+      <div className="relative flex min-w-zero grow flex-col items-start">
         {flag === "updated" ? (
           <span aria-label="Recently updated" className="absolute -top-subtext left-attached size-attached rounded-pill bg-feedback-success" />
         ) : null}
-        <div dir="auto" title={devKey} className="break-words rounded-badge border border-border bg-neutral-surface px-inset-badge-x py-subtext text-caption text-text-secondary">
-          {devKey}
+        <div className="relative w-full">
+          <div
+            dir="auto"
+            title={devKey}
+            className={cx(
+              "break-words rounded-badge border border-border bg-neutral-surface px-inset-badge-x py-subtext text-caption text-text-secondary",
+              flag === "new" && "pt-new-badge-clear",
+            )}
+          >
+            {devKey}
+          </div>
+          {flag === "new" ? (
+            <span className="absolute -top-subtext -right-subtext">
+              <NewBadge />
+            </span>
+          ) : null}
         </div>
       </div>
       <CopyKeyButton label={`Copy key ${devKey}`} onClick={onCopy} />
