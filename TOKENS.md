@@ -23,7 +23,7 @@
 1. Roles are components, not props: `SaveButton`, `CancelButton`, `PageTitle`... each wraps an internal Base component (`BaseButton`, `BaseText`...) that is never exported.
 2. Button icon gap is 8 (`attached`, as in Figma); the spacing doc says icon to label is 12 but does not cover buttons.
 3. Buttons have fixed height 44 and no vertical padding (the doc's rule). Figma showed padding 10.
-4. Nav items are a fixed 54 high in both states (Figma had 54 vs 51; the doc's padding of 10 would give 44).
+4. Nav items and the language selector are a fixed 46 high, and nav items are 12 apart (`related`). The logo tile is 36 x 34.
 5. Placeholder color is `#757575` (passes contrast) instead of the lighter gray in Figma.
 6. Option boxes and inputs share one border color (Figma had a darker border on option boxes).
 7. Added what Figma lacks: focus rings, hover and pressed states, drag-over and error states for upload, readonly and disabled fields.

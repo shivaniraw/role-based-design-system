@@ -9,7 +9,7 @@ import { Breadcrumb, type BreadcrumbItem } from "./Breadcrumb";
 import { ProfileMenu } from "./Profile";
 import { Listbox, type SelectOption } from "./select/Listbox";
 
-/** Figma: Logo (32:60) + brand name. Blue 43 x 42 tile, radius 8, white translate mark; name Title/18 Medium. */
+/** Figma: Logo (32:60) + brand name. Blue 36 x 34 tile, radius 8, white translate mark; name Title/18 Medium. */
 export function Logo({ name }: { name: string }) {
   return (
     <div className="flex items-center gap-attached">
@@ -30,7 +30,7 @@ export interface AppSelectorProps {
   ariaLabel: string;
 }
 
-/** Figma: App Selector (32:56). The pill dropdown at the top of the nav (language). */
+/** Figma: App Selector (32:56). 46 tall. The pill dropdown at the top of the nav (language). */
 export function AppSelector({ value, options, onChange, ariaLabel }: AppSelectorProps) {
   return <Listbox look="selector" options={options} value={value} onChange={onChange} ariaLabel={ariaLabel} />;
 }
@@ -42,7 +42,7 @@ export interface NavEntry {
 }
 
 /**
- * Figma: Nav tabs (32:55). 54 tall, 22 side padding, 24 icon + 12 gap + 18px Regular #424242 (`text-nav-item`).
+ * Figma: Nav tabs (32:55). 46 tall, 22 side padding, 24 icon + 12 gap + 18px Regular #424242 (`text-nav-item`).
  * Selected: #F2F7FF fill, radius 8, blue text and icon.
  */
 function NavItem({ entry, selected, onSelect }: { entry: NavEntry; selected: boolean; onSelect: (id: string) => void }) {
@@ -76,7 +76,7 @@ export interface LeftNavProps {
 
 /**
  * Figma: Left Nav bar (32:63). 330 wide, white, 1px right border, inset 16 across / 14 down.
- * Brand, selector, "All Apps" and the list are `group` apart (Figma shows ~30); items are `choices` apart.
+ * Brand, selector, "All Apps" and the list are `group` apart (Figma shows ~30); items are `related` apart (12: items in a list).
  */
 export function LeftNav({
   appName,
@@ -100,7 +100,7 @@ export function LeftNav({
             {sectionLabel}
           </BaseText>
         </Box>
-        <Stack relation="choices" as="nav" aria-label={sectionLabel}>
+        <Stack relation="related" as="nav" aria-label={sectionLabel}>
           {items.map((entry) => (
             <NavItem key={entry.id} entry={entry} selected={entry.id === selectedId} onSelect={onSelect} />
           ))}

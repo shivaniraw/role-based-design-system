@@ -64,7 +64,7 @@
   --spacing-control-h: 44px; /* Figma: buttons */
   --spacing-field-h: 40px; /* Figma: Text Input, Select Field, Checkbox Option */
   --spacing-cell-input-h: 42px; /* Figma: dev key input in a table cell */
-  --spacing-selector-h: 54px; /* Figma: App Selector */
+  --spacing-selector-h: 46px; /* Figma: App Selector */
   --spacing-textarea-h: 68px; /* Figma: Textarea Field */
   --spacing-tab-h: 56px; /* Figma: Tab */
   --spacing-topbar-h: 72px; /* Figma: Top Bar */
@@ -74,10 +74,10 @@
   --spacing-icon-sm: 16px;
   --spacing-icon-field: 20px; /* Figma: chevron inside selects */
   --spacing-icon-lg: 36px; /* Figma: upload icon */
-  --spacing-logo-w: 43px; /* Figma: Logo */
-  --spacing-logo-h: 42px;
+  --spacing-logo-w: 36px; /* Figma: Logo, 36 x 34 */
+  --spacing-logo-h: 34px;
   --spacing-nav-w: 330px; /* Figma: Left Nav bar */
-  --spacing-nav-item-h: 54px; /* Figma: Nav tabs (selected is 51 in Figma; kept 54 so rows don't jump) */
+  --spacing-nav-item-h: 46px; /* Figma: Nav tabs, 46 in both states */
   --spacing-modal-w: 784px; /* Figma: 704 form + 40 panel inset each side */
   --spacing-screenshot-w: 31px; /* Figma: table thumbnail 31 x 48, 6 above and below in a 60 row */
   --spacing-screenshot-h: 48px;

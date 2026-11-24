@@ -10,8 +10,8 @@ export const RELATIONS = [
   "subtext", // 6  - a line of text and the smaller line under it
   "iconLabel", // 12 - an icon or checkbox and its text label
   "attached", // 8  - other parts of one element
-  "choices", // 20 - big clickable boxes in a set (nav items, option boxes). Not tabs
-  "related", // 12 - a pair doing one job, list items, a heading and its list
+  "choices", // 20 - big clickable boxes in a set (option boxes). Not tabs
+  "related", // 12 - a pair doing one job, list items (nav items), a heading and its list
   "group", // 28 - different groups in the same area (field to field, tab to tab)
   "region", // 44 - main blocks of a modal or card
   "section", // 80 - different sections of a page

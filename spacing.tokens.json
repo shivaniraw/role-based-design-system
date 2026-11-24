@@ -18,12 +18,12 @@
     "choices": {
       "$type": "dimension",
       "$value": { "value": 20, "unit": "px" },
-      "$description": "Between big clickable boxes in a set. Examples: nav items, Prod ↔ Pre-Prod option boxes. Not for tabs (use spacing/group)."
+      "$description": "Between big clickable boxes in a set. Examples: Prod ↔ Pre-Prod option boxes. Not for tabs (use spacing/group)."
     },
     "related": {
       "$type": "dimension",
       "$value": { "value": 12, "unit": "px" },
-      "$description": "A pair that does one job, items in a list, or a heading and the list it names. Examples: label → input, cards in a list, All Apps → its list, back icon → page title, two buttons side by side. Not for tabs → their content (use spacing/group)."
+      "$description": "A pair that does one job, items in a list, or a heading and the list it names. Examples: label → input, nav items, cards in a list, All Apps → its list, back icon → page title, two buttons side by side. Not for tabs → their content (use spacing/group)."
     },
     "group": {
       "$type": "dimension",

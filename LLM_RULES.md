@@ -25,8 +25,8 @@ Look at the two things on either side of the gap, then check these IN ORDER and 
 | 1 | `subtext` | 6 | A line of text and the smaller line under it |
 | 2 | `iconLabel` | 12 | An icon or checkbox and its text label |
 | 3 | `attached` | 8 | Other parts of one element (logo and name, tab label and count) |
-| 4 | `choices` | 20 | Big clickable boxes in a set (nav items, Prod / Pre-Prod boxes). Not tabs |
-| 5 | `related` | 12 | A pair that does one job; items in a list; a heading and its list. Not tabs |
+| 4 | `choices` | 20 | Big clickable boxes in a set (Prod / Pre-Prod boxes). Not tabs |
+| 5 | `related` | 12 | A pair that does one job; items in a list (nav items); a heading and its list. Not tabs |
 | 6 | `group` | 28 | Different groups in the same area (field to field, filter to filter, tab to tab, tabs to table) |
 | 7 | `region` | 44 | Main blocks of a modal or card (header, filters, content, footer) |
 | 8 | `section` | 80 | Different sections of a page |

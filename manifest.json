@@ -53,7 +53,6 @@
       "px": 20,
       "use": "Big clickable boxes in a set. Not tabs",
       "examples": [
-        "nav items",
         "Prod <-> Pre-Prod option boxes"
       ]
     },
@@ -62,6 +61,7 @@
       "use": "A pair that does one job; items in a list; a heading and the list it names. Not tabs",
       "examples": [
         "label -> input",
+        "nav items",
         "cards in a list",
         "All Apps -> its list",
         "back icon -> page title",
