@@ -32,7 +32,7 @@
   --aspect-*: initial;
 
   /* ---- Spacing: gap relations (OneHub spacing doc, 8 gap rules) ---- */
-  --spacing-subtext: 4px;
+  --spacing-subtext: 6px;
   --spacing-attached: 8px;
   --spacing-icon-label: 12px;
   --spacing-related: 12px;

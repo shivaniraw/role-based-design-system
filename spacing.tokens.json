@@ -2,7 +2,7 @@
   "spacing": {
     "subtext": {
       "$type": "dimension",
-      "$value": { "value": 4, "unit": "px" },
+      "$value": { "value": 6, "unit": "px" },
       "$description": "A line of text and the smaller line under it that describes it. Examples: User Name → Admin, page title → Version 1 row."
     },
     "icon-label": {

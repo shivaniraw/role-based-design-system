@@ -7,7 +7,7 @@
 
 /** The 8 gap rules from the OneHub spacing doc, in the doc's check order. */
 export const RELATIONS = [
-  "subtext", // 4  - a line of text and the smaller line under it
+  "subtext", // 6  - a line of text and the smaller line under it
   "iconLabel", // 12 - an icon or checkbox and its text label
   "attached", // 8  - other parts of one element
   "choices", // 20 - big clickable boxes in a set (nav items, option boxes). Not tabs

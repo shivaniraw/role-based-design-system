@@ -22,7 +22,7 @@
       "section"
     ],
     "subtext": {
-      "px": 4,
+      "px": 6,
       "use": "A line of text and the smaller line under it",
       "examples": [
         "User Name -> Admin",
