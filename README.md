@@ -149,6 +149,17 @@ Run these in the terminal. Each one should end with a pass message.
 - The Pending Translations tab has no design yet, so it shows an empty message.
 - Table thumbnails are placeholder drawings.
 
+## Live site
+
+The screens are deployed on Netlify at **https://design.shivanirawat.in** (settings in `netlify.toml`). Every push to `main` redeploys it. Direct links:
+
+- Components: `/?view=components`
+- Pending Dev Keys: `/?view=screen-keys`
+- Duplicate key error: `/?view=screen-error`
+- Active Translations: `/?view=screen-active`
+- Apply to Environments: `/?view=screen-environments`
+- Add New Word: `/?view=screen-modal`
+
 ## For developers
 
 React 19, TypeScript, Tailwind CSS v4 and Vite. Tailwind's default scales are removed in `theme.css`, so only the role tokens exist. Custom ESLint rules in `eslint-rules/` block `className`, `style`, raw HTML elements and raw values in screens. Screens import only from `@onehub/ds`. Desktop only, minimum width 1280px.
