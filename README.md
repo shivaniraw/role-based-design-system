@@ -139,6 +139,7 @@ Run these in the terminal. Each one should end with a pass message.
 | `LLM_RULES.md` | Rules for the AI |
 | `manifest.json` | List of every building block and when to use it |
 | `TOKENS.md` | Values that are estimates and still need checking against Figma |
+| `comparison/` | The Add New Word modal written the traditional way (plain Tailwind, every value typed by hand), to compare with the role-based version. It breaks the rules on purpose and is not part of the system. Open it with `npm run dev`, then go to `/comparison/`. |
 
 ---
 

@@ -14,7 +14,8 @@ const SCREEN_FILES = [
 
 export default defineConfig(
   // Violation fixtures are linted only by `npm run test:guardrails`, which proves they fail.
-  { ignores: ["dist", "node_modules", "fixtures/violations/**", "fixtures/type-errors/**"] },
+  // comparison/ is a deliberate "before" example written the traditional way, so it breaks every rule on purpose.
+  { ignores: ["dist", "node_modules", "fixtures/violations/**", "fixtures/type-errors/**", "comparison/**"] },
   js.configs.recommended,
   tseslint.configs.recommended,
   {
