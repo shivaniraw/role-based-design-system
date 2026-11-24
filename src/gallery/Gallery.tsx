@@ -2,27 +2,39 @@
 // Use ?view=components | screen-keys | screen-active | screen-error | screen-modal
 import { useState } from "react";
 import {
-  Badge,
+  AddButton,
+  BackButton,
   Box,
-  Button,
-  BUTTON_ACTIONS,
+  CancelButton,
   Checkbox,
+  CloseButton,
+  CopyKeyButton,
+  CountBadge,
+  DeleteButton,
+  EditButton,
+  ErrorBanner,
+  LanguageButton,
+  NewBadge,
+  OpenButton,
+  PublishButton,
+  PublishToTestButton,
+  SaveAsButton,
+  SaveButton,
+  SectionHeading,
+  SuccessBanner,
+  SuccessToast,
+  VersionBadge,
   DataTable,
   DropdownCell,
   FileUpload,
-  IconButton,
-  ICON_ACTIONS,
   Inline,
   InputCell,
   NumberCell,
-  Notification,
   OptionBox,
   ScreenshotCell,
   SelectField,
-  SplitButton,
   Stack,
   Tabs,
-  Text,
   TextArea,
   TextCell,
   TextField,
@@ -83,9 +95,7 @@ const ROWS: DemoRow[] = [
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <Stack relation="related">
-      <Text variant="title" as="h2">
-        {title}
-      </Text>
+      <SectionHeading>{title}</SectionHeading>
       {children}
     </Stack>
   );
@@ -134,43 +144,36 @@ function Components() {
   return (
     <Box inset="page">
       <Stack relation="section">
-        <Section title="Buttons: one component, role by action">
+        <Section title="Buttons: one component per role, all built on an internal BaseButton">
           <Stack relation="group">
             <Inline relation="group" wrap>
-              {BUTTON_ACTIONS.map((action) => (
-                <Button key={action} action={action}>
-                  {action}
-                </Button>
-              ))}
+              <AddButton>Add New Word</AddButton>
+              <SaveButton />
+              <SaveAsButton target="Pending_Dev_key" />
+              <CancelButton />
+              <LanguageButton language="French" />
+              <PublishToTestButton />
+              <PublishButton environments={["Prod", "Pre-Prod"]} onSelect={() => setToast(true)} />
             </Inline>
             <Inline relation="group" wrap>
-              {BUTTON_ACTIONS.map((action) => (
-                <Button key={action} action={action} disabled>
-                  {`${action} (disabled)`}
-                </Button>
-              ))}
+              <AddButton disabled>Add New Word</AddButton>
+              <SaveButton disabled />
+              <SaveAsButton target="Pending_Dev_key" disabled />
+              <CancelButton disabled />
+              <LanguageButton language="French" disabled />
+              <PublishToTestButton disabled />
+              <PublishButton environments={["Prod", "Pre-Prod"]} onSelect={() => undefined} disabled />
             </Inline>
             <Inline relation="group" wrap>
-              <Button action="save" loading>
-                Saving
-              </Button>
-              <Button action="switch" iconLeading="globe">
-                Language
-              </Button>
-              <Button action="switch" iconTrailing="globe">
-                Language
-              </Button>
-              <SplitButton action="publish" options={["Prod", "Pre-Prod"]} onSelect={() => setToast(true)}>
-                Publish
-              </SplitButton>
-              <SplitButton action="publish" options={["Prod", "Pre-Prod"]} onSelect={() => undefined} disabled>
-                Publish
-              </SplitButton>
+              <SaveButton loading>Saving</SaveButton>
             </Inline>
             <Inline relation="group">
-              {ICON_ACTIONS.map((action) => (
-                <IconButton key={action} action={action} label={action} />
-              ))}
+              <EditButton label="Edit details" />
+              <DeleteButton label="Delete" />
+              <CloseButton label="Close" />
+              <BackButton label="Back" />
+              <CopyKeyButton label="Copy key" />
+              <OpenButton label="Open" />
             </Inline>
           </Stack>
         </Section>
@@ -235,22 +238,18 @@ function Components() {
 
         <Section title="Badges and notifications">
           <Inline relation="group">
-            <Badge kind="version">Version 1</Badge>
-            <Badge kind="count">5</Badge>
-            <Badge kind="count" tone="active">
-              12
-            </Badge>
+            <VersionBadge version={1} />
+            <CountBadge count={5} />
+            <NewBadge />
           </Inline>
-          <Notification status="error" placement="inline" title="Duplicate developer key detected">
+          <ErrorBanner title="Duplicate developer key detected">
             The developer key "kc.head.feature3" already exists. Please change it before saving.
-          </Notification>
-          <Notification status="success" placement="inline" title="Keys Assigned Successfully!">
-            Keys successfully assigned and moved to Active Translations
-          </Notification>
+          </ErrorBanner>
+          <SuccessBanner title="Keys Assigned Successfully!">Keys successfully assigned and moved to Active Translations</SuccessBanner>
           {toast ? (
-            <Notification status="success" placement="floating" title="Published" onDismiss={() => setToast(false)}>
+            <SuccessToast title="Published" onDismiss={() => setToast(false)}>
               Floating toast, top right.
-            </Notification>
+            </SuccessToast>
           ) : null}
         </Section>
 

@@ -57,7 +57,17 @@ for (const file of readdirSync(dir).filter((f) => f.endsWith(".tsx")).sort()) {
   else fail("types: invalid-roles fixture should produce at least 4 errors", `got ${count}`);
 }
 
-// 4. Manifest lists every exported component.
+// 4. Base components stay internal: nothing named Base* is exported.
+{
+  const index = readFileSync("src/index.ts", "utf8");
+  const leaked = [...index.matchAll(/export\s+(?:type\s+)?\{([^}]+)\}\s+from/g)]
+    .flatMap((m) => m[1].split(",").map((s) => s.trim()))
+    .filter((name) => /^Base[A-Z]/.test(name));
+  if (leaked.length === 0) pass("api: no Base component is exported (screens can only use role components)");
+  else fail("api: Base components must stay internal", `exported: ${leaked.join(", ")}`);
+}
+
+// 5. Manifest lists every exported component.
 {
   const index = readFileSync("src/index.ts", "utf8");
   const exported = new Set();

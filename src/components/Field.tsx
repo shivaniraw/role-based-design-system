@@ -2,7 +2,7 @@ import { useId, useState, type ReactNode } from "react";
 import { Icon, type IconName } from "../icons";
 import { cx } from "../lib/cx";
 import { Stack } from "../primitives/Stack";
-import { Text } from "../primitives/Text";
+import { BaseText } from "../primitives/text/BaseText";
 
 /**
  * default  - nothing to say
@@ -53,9 +53,9 @@ function FieldShell({
     <Stack relation="subtext">
       {children}
       {message ? (
-        <Text variant="caption" tone={status === "error" ? "error" : "muted"} id={`${id}-message`}>
+        <BaseText variant="caption" tone={status === "error" ? "error" : "muted"} id={`${id}-message`}>
           {message}
-        </Text>
+        </BaseText>
       ) : null}
     </Stack>
   );

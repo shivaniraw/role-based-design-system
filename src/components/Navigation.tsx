@@ -4,7 +4,7 @@ import { cx } from "../lib/cx";
 import { Box } from "../primitives/Box";
 import { Split } from "../primitives/Split";
 import { Stack } from "../primitives/Stack";
-import { Text } from "../primitives/Text";
+import { BaseText } from "../primitives/text/BaseText";
 import { Breadcrumb, type BreadcrumbItem } from "./Breadcrumb";
 import { ProfileMenu } from "./Profile";
 import type { SelectOption } from "./Field";
@@ -19,9 +19,9 @@ export function Logo({ name }: { name: string }) {
         <path d="M22 36A14 14 0 0 1 8 22" className="stroke-brand-yellow" />
         <path d="M8 22A14 14 0 0 1 22 8" className="stroke-brand-red" />
       </svg>
-      <Text variant="title" weight="regular" tone="secondary">
+      <BaseText variant="title" weight="regular" tone="secondary">
         {name}
-      </Text>
+      </BaseText>
     </div>
   );
 }
@@ -114,7 +114,7 @@ export function LeftNav({
         <AppSelector value={language} options={languageOptions} onChange={onLanguageChange} ariaLabel="Language" />
         <Stack relation="related" as="nav" aria-label={sectionLabel}>
           <Box inset="controlX">
-            <Text variant="nav">{sectionLabel}</Text>
+            <BaseText variant="nav">{sectionLabel}</BaseText>
           </Box>
           <Stack relation="choices">
             {items.map((entry) => (

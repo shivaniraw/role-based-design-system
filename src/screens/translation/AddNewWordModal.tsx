@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Button, FileUpload, Inline, Modal, ModalFooter, OptionBox, SelectField, Stack, Text, TextArea, TextField, type UploadedFile } from "@onehub/ds";
+import { Box, CancelButton, FileUpload, GroupLabel, Inline, Modal, ModalFooter, OptionBox, SaveAsButton, SelectField, Stack, TextArea, TextField, type UploadedFile } from "@onehub/ds";
 import { PAGES, MODULES, type PendingKey } from "./data";
 
 interface AddNewWordModalProps {
@@ -24,16 +24,8 @@ export function AddNewWordModal({ languageName, onClose, onSave }: AddNewWordMod
       onClose={onClose}
       footer={
         <ModalFooter
-          start={
-            <Button action="cancel" onClick={onClose}>
-              Cancel
-            </Button>
-          }
-          end={
-            <Button action="save" disabled={!canSave} onClick={() => onSave({ page, module, source, local })}>
-              Save as Pending_Dev_key
-            </Button>
-          }
+          start={<CancelButton onClick={onClose} />}
+          end={<SaveAsButton target="Pending_Dev_key" disabled={!canSave} onClick={() => onSave({ page, module, source, local })} />}
         />
       }
     >
@@ -55,9 +47,9 @@ export function AddNewWordModal({ languageName, onClose, onSave }: AddNewWordMod
           onRemove={() => setScreenshot(null)}
         />
         <Stack relation="related">
-          <Text variant="label" tone="secondary">
+          <GroupLabel>
             Save on Environment
-          </Text>
+          </GroupLabel>
           <Inline relation="choices">
             <Box inset="none" grow>
               <OptionBox label="Prod" defaultChecked />

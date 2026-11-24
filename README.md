@@ -6,7 +6,7 @@ A ready-made set of building blocks (buttons, fields, tables, pop-ups and more) 
 
 Designers can ask an AI tool to build a screen. The code it writes is usually messy, so developers can't use it. This project fixes that:
 
-- **Buttons are picked by what they do**, not by how they look. You ask for a "save" button or a "cancel" button, and the right colour and style come with it.
+- **Every button is named for what it does**, not how it looks. There is a `SaveButton`, a `CancelButton`, an `AddButton`, and so on. The right colour and style come with the name. All of them share one hidden `BaseButton`, which screens can't use. A new kind of button means adding a new named component, not tweaking an old one. Text, badges and messages work the same way.
 - **Spacing is picked by meaning**, not by numbers. You say two things are "related" or in different "groups", and the right gap is applied.
 - **Shortcuts are blocked.** If the AI types a random colour or pixel size, a check fails and tells it what to use instead.
 

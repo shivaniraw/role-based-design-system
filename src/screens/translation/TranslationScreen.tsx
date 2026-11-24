@@ -1,23 +1,29 @@
 import { useState } from "react";
 import {
+  AddButton,
   AppShell,
-  Badge,
+  BackButton,
   Box,
-  Button,
+  CancelButton,
   Card,
-  IconButton,
+  EmptyMessage,
+  ErrorBanner,
   Inline,
   LeftNav,
-  Notification,
+  MetaText,
   Page,
+  PageTitle,
+  PublishButton,
+  PublishToTestButton,
+  SaveButton,
   SelectField,
   Split,
-  SplitButton,
   Stack,
+  SuccessToast,
   Tabs,
-  Text,
   TextField,
   TopBar,
+  VersionBadge,
 } from "@onehub/ds";
 import { ActiveTranslationsCombinedTable } from "./ActiveTranslationsCombinedTable";
 import { ActiveTranslationsTable } from "./ActiveTranslationsTable";
@@ -168,34 +174,22 @@ export function TranslationScreen({
             footer={
               <Split
                 minRelation="region"
-                start={
-                  <Button action="cancel" onClick={cancelEdits}>
-                    Cancel
-                  </Button>
-                }
+                start={<CancelButton onClick={cancelEdits} />}
                 end={
                   tab === "active" && activeLayout === "combined" ? (
                     <Inline relation="related">
-                      <Button action="save" disabled={!canSave} onClick={saveActiveRows}>
-                        Save
-                      </Button>
-                      <SplitButton action="publish" options={["Prod", "Pre-Prod"]} onSelect={publishTo} disabled={!canSave}>
-                        Publish
-                      </SplitButton>
+                      <SaveButton disabled={!canSave} onClick={saveActiveRows} />
+                      <PublishButton environments={["Prod", "Pre-Prod"]} onSelect={publishTo} disabled={!canSave} />
                     </Inline>
                   ) : tab === "active" ? (
                     <Inline relation="related">
-                      <Button action="save" disabled={!canSave} onClick={saveActiveRows}>
+                      <SaveButton disabled={!canSave} onClick={saveActiveRows}>
                         Preview &amp; Save
-                      </Button>
-                      <Button action="publish" disabled={!canSave}>
-                        Publish to Test App
-                      </Button>
+                      </SaveButton>
+                      <PublishToTestButton disabled={!canSave} />
                     </Inline>
                   ) : (
-                    <Button action="save" disabled={!canSave} onClick={saveAssignedKeys}>
-                      Save
-                    </Button>
+                    <SaveButton disabled={!canSave} onClick={saveAssignedKeys} />
                   )
                 }
               />
@@ -207,26 +201,26 @@ export function TranslationScreen({
                   minRelation="group"
                   start={
                     <Inline relation="related">
-                      <IconButton action="navigate-back" label="Back" />
-                      <Text variant="title" as="h1">
+                      <BackButton label="Back" />
+                      <PageTitle>
                         Select the page or module you want to translate
-                      </Text>
+                      </PageTitle>
                     </Inline>
                   }
                   end={
                     <Inline relation="related">
-                      <Button action="create">Add Dev_key</Button>
-                      <Button action="create" onClick={() => setAddingWord(true)}>
+                      <AddButton>Add Dev_key</AddButton>
+                      <AddButton onClick={() => setAddingWord(true)}>
                         Add New Word
-                      </Button>
+                      </AddButton>
                     </Inline>
                   }
                 />
                 <Inline relation="attached">
-                  <Badge kind="version">Version 1</Badge>
-                  <Text variant="caption" tone="secondary">
+                  <VersionBadge version={1} />
+                  <MetaText>
                     Published on: 23 Apr 2026, 15:30 IST by Admin
-                  </Text>
+                  </MetaText>
                 </Inline>
               </Stack>
 
@@ -246,9 +240,9 @@ export function TranslationScreen({
                   </Box>
                 </Inline>
                 {rejectedKey !== undefined ? (
-                  <Notification status="error" placement="inline" title="Duplicate developer key detected">
+                  <ErrorBanner title="Duplicate developer key detected">
                     {`The developer key "${rejectedKey}" already exists. Please change it before saving.`}
-                  </Notification>
+                  </ErrorBanner>
                 ) : null}
               </Stack>
 
@@ -273,7 +267,7 @@ export function TranslationScreen({
                     onOpen={() => undefined}
                   />
                 ) : null}
-                {tab === "pending" ? <Text variant="body" tone="muted">No pending translations.</Text> : null}
+                {tab === "pending" ? <EmptyMessage>No pending translations.</EmptyMessage> : null}
               </Stack>
             </Stack>
           </Card>
@@ -282,9 +276,9 @@ export function TranslationScreen({
 
       {addingWord ? <AddNewWordModal languageName={LANGUAGE_NAMES[language] ?? language} onClose={() => setAddingWord(false)} onSave={addPendingWord} /> : null}
       {toast ? (
-        <Notification status="success" placement="floating" title={toast.title} onDismiss={() => setToast(null)}>
+        <SuccessToast title={toast.title} onDismiss={() => setToast(null)}>
           {toast.detail}
-        </Notification>
+        </SuccessToast>
       ) : null}
     </>
   );

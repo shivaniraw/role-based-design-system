@@ -104,7 +104,7 @@ const noClassOrStyleProps = {
     schema: [],
     messages: {
       banned:
-        "Do not pass `{{name}}` in a screen. Layout and styling come from role props on design-system components (relation, inset, action, variant, tone).",
+        "Do not pass `{{name}}` in a screen. Spacing comes from `relation` and `inset`; everything else comes from role components (SaveButton, PageTitle, ErrorBanner...).",
     },
   },
   create(context) {

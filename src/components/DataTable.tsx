@@ -1,8 +1,9 @@
 import type { ReactNode } from "react";
 import { cx } from "../lib/cx";
-import { Badge } from "./Badge";
 import { Checkbox, OptionBox } from "./Checkbox";
-import { IconButton } from "./IconButton";
+import { NewBadge } from "./badges/NewBadge";
+import { BaseIconButton } from "./icon-buttons/BaseIconButton";
+import { CopyKeyButton } from "./icon-buttons/CopyKeyButton";
 import { SelectField, TextArea, TextField, type FieldStatus, type SelectOption } from "./Field";
 
 export type ColumnWidth = "xs" | "sm" | "md" | "lg" | "xl";
@@ -48,9 +49,9 @@ export function DataTable<Row>({ columns, rows, getRowKey, ariaLabel, emptyMessa
                 <div className="flex items-center justify-between gap-attached">
                   {column.header}
                   {column.headerEdit ? (
-                    <IconButton
-                      action="edit"
-                      surface="onAction"
+                    <BaseIconButton
+                      icon="pencil"
+                      tone="onAction"
                       label={column.headerEdit.label}
                       onClick={column.headerEdit.onClick}
                     />
@@ -177,7 +178,7 @@ export function DevKeyCell({
   return (
     <div className="flex items-center gap-related">
       <div className="relative flex min-w-zero grow flex-col items-start gap-subtext">
-        {flag === "new" ? <Badge kind="new">New</Badge> : null}
+        {flag === "new" ? <NewBadge /> : null}
         {flag === "updated" ? (
           <span aria-label="Recently updated" className="absolute -top-subtext left-attached size-attached rounded-pill bg-feedback-success" />
         ) : null}
@@ -185,7 +186,7 @@ export function DevKeyCell({
           {devKey}
         </div>
       </div>
-      <IconButton action="copy-key" label={`Copy key ${devKey}`} onClick={onCopy} />
+      <CopyKeyButton label={`Copy key ${devKey}`} onClick={onCopy} />
     </div>
   );
 }

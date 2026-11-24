@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { Icon } from "../icons";
-import { Text } from "../primitives/Text";
+import { BaseText } from "../primitives/text/BaseText";
 
 export interface BreadcrumbItem {
   label: string;
@@ -27,15 +27,15 @@ export function Breadcrumb({ items, homeHref = "/" }: BreadcrumbProps) {
             <Icon name="chevronRight" />
             {item.href && !last ? (
               <a href={item.href} className="focus-visible:outline-2 focus-visible:outline-action">
-                <Text variant="heading" weight="regular" tone="secondary">
+                <BaseText variant="heading" weight="regular" tone="secondary">
                   {item.label}
-                </Text>
+                </BaseText>
               </a>
             ) : (
               <span aria-current={last ? "page" : undefined}>
-                <Text variant="heading" weight="regular" tone="secondary">
+                <BaseText variant="heading" weight="regular" tone="secondary">
                   {item.label}
-                </Text>
+                </BaseText>
               </span>
             )}
           </Fragment>

@@ -1,6 +1,6 @@
 import { Icon } from "../icons";
 import { Stack } from "../primitives/Stack";
-import { Text } from "../primitives/Text";
+import { BaseText } from "../primitives/text/BaseText";
 
 export interface AvatarProps {
   /** The first letter is shown. */
@@ -38,12 +38,12 @@ export function ProfileMenu({ name, subtitle, onClick }: ProfileMenuProps) {
     >
       <Avatar name={name} />
       <Stack relation="subtext">
-        <Text variant="table" weight="medium" tone="secondary">
+        <BaseText variant="table" weight="medium" tone="secondary">
           {name}
-        </Text>
-        <Text variant="caption" tone="muted">
+        </BaseText>
+        <BaseText variant="caption" tone="muted">
           {subtitle}
-        </Text>
+        </BaseText>
       </Stack>
       <span className="text-text-secondary">
         <Icon name="chevronDown" />

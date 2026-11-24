@@ -1,16 +1,21 @@
-import { Icon } from "../icons";
-import { cx } from "../lib/cx";
-import { Stack } from "../primitives/Stack";
-import { Text } from "../primitives/Text";
-import { IconButton } from "./IconButton";
+// INTERNAL. Not exported. Screens use ErrorBanner, SuccessBanner, ErrorToast or SuccessToast.
+// A new kind of message is a new role component in this folder.
+import { Icon } from "../../icons";
+import { cx } from "../../lib/cx";
+import { Stack } from "../../primitives/Stack";
+import { BaseText } from "../../primitives/text/BaseText";
+import { CloseButton } from "../icon-buttons/CloseButton";
 
-export interface NotificationProps {
-  status: "error" | "success";
-  /** "inline" sits in the page flow (validation errors). "floating" appears over the page (success toasts). */
-  placement: "inline" | "floating";
+export interface MessageProps {
   title: string;
   /** Detail line under the title. */
   children?: string;
+}
+
+interface BaseNotificationProps extends MessageProps {
+  status: "error" | "success";
+  /** "inline" sits in the page flow (validation errors). "floating" appears over the page (success toasts). */
+  placement: "inline" | "floating";
   onDismiss?: () => void;
 }
 
@@ -25,8 +30,7 @@ const LOOK = {
   },
 } as const;
 
-/** One family for both the inline error banner and the floating success toast. */
-export function Notification({ status, placement, title, children, onDismiss }: NotificationProps) {
+export function BaseNotification({ status, placement, title, children, onDismiss }: BaseNotificationProps) {
   const tone = status === "error" ? "error" : "success";
   return (
     <div
@@ -42,17 +46,17 @@ export function Notification({ status, placement, title, children, onDismiss }: 
       </span>
       <div className="min-w-zero grow">
         <Stack relation="subtext">
-          <Text variant="body" weight="medium" tone={tone}>
+          <BaseText variant="body" weight="medium" tone={tone}>
             {title}
-          </Text>
+          </BaseText>
           {children ? (
-            <Text variant="caption" tone="secondary">
+            <BaseText variant="caption" tone="secondary">
               {children}
-            </Text>
+            </BaseText>
           ) : null}
         </Stack>
       </div>
-      {onDismiss ? <IconButton action="dismiss" label="Dismiss" onClick={onDismiss} /> : null}
+      {onDismiss ? <CloseButton label="Dismiss" onClick={onDismiss} /> : null}
     </div>
   );
 }

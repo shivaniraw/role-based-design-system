@@ -1,6 +1,6 @@
 import { useRef, type KeyboardEvent } from "react";
 import { cx } from "../lib/cx";
-import { Badge } from "./Badge";
+import { BaseBadge } from "./badges/BaseBadge";
 
 export interface TabItem {
   value: string;
@@ -64,9 +64,9 @@ export function Tabs({ items, value, onChange, ariaLabel }: TabsProps) {
           >
             {item.label}
             {item.count !== undefined ? (
-              <Badge kind="count" tone={active ? "active" : "neutral"}>
+              <BaseBadge look={active ? "countActive" : "count"}>
                 {item.count}
-              </Badge>
+              </BaseBadge>
             ) : null}
           </button>
         );

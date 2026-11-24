@@ -1,4 +1,4 @@
-import { DataTable, DevKeyCell, EnvironmentCell, IconButton, InputCell, NumberCell, TextCell, type Column } from "@onehub/ds";
+import { DataTable, DevKeyCell, EnvironmentCell, InputCell, NumberCell, OpenButton, TextCell, type Column } from "@onehub/ds";
 import type { ActiveRow } from "./data";
 
 interface ActiveTranslationsTableProps {
@@ -62,7 +62,7 @@ export function ActiveTranslationsTable({ rows, onChange, onCopyKey, onOpen }: A
       key: "action",
       header: "Action",
       width: "xs",
-      cell: (row) => <IconButton action="open" label={`Open ${row.devKey}`} onClick={() => onOpen(row)} />,
+      cell: (row) => <OpenButton label={`Open ${row.devKey}`} onClick={() => onOpen(row)} />,
     },
   ];
 

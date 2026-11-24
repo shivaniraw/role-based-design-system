@@ -2,8 +2,8 @@ import { useId, useState, type DragEvent } from "react";
 import { Icon } from "../icons";
 import { cx } from "../lib/cx";
 import { Stack } from "../primitives/Stack";
-import { Text } from "../primitives/Text";
-import { IconButton } from "./IconButton";
+import { BaseText } from "../primitives/text/BaseText";
+import { DeleteButton } from "./icon-buttons/DeleteButton";
 
 export interface UploadedFile {
   name: string;
@@ -50,12 +50,12 @@ export function FileUpload({ label, file, onSelect, onRemove, error, accept = "i
               {file.previewUrl ? (
                 <img src={file.previewUrl} alt={file.name} className="max-h-full max-w-full object-contain" />
               ) : (
-                <Text variant="body" tone="secondary">
+                <BaseText variant="body" tone="secondary">
                   {file.name}
-                </Text>
+                </BaseText>
               )}
               <div className="absolute top-attached right-attached">
-                <IconButton action="delete" label={`Remove ${file.name}`} onClick={onRemove} />
+                <DeleteButton label={`Remove ${file.name}`} onClick={onRemove} />
               </div>
             </>
           ) : (
@@ -70,9 +70,9 @@ export function FileUpload({ label, file, onSelect, onRemove, error, accept = "i
               className="flex size-full cursor-pointer flex-col items-center justify-center gap-related text-text-secondary has-focus-visible:outline-2 has-focus-visible:outline-action"
             >
               <Icon name="upload" />
-              <Text variant="body" tone="secondary">
+              <BaseText variant="body" tone="secondary">
                 Click to upload or <span className="underline">Browse screenshot</span>
-              </Text>
+              </BaseText>
             </label>
           )}
           <input
@@ -89,9 +89,9 @@ export function FileUpload({ label, file, onSelect, onRemove, error, accept = "i
           />
         </div>
         {error ? (
-          <Text variant="caption" tone="error">
+          <BaseText variant="caption" tone="error">
             {error}
-          </Text>
+          </BaseText>
         ) : null}
       </Stack>
     </Stack>

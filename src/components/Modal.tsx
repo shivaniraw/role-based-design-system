@@ -1,7 +1,7 @@
 import { useEffect, useId, useRef, type ReactNode } from "react";
 import { Split } from "../primitives/Split";
-import { Text } from "../primitives/Text";
-import { IconButton } from "./IconButton";
+import { BaseText } from "../primitives/text/BaseText";
+import { CloseButton } from "./icon-buttons/CloseButton";
 
 const FOCUSABLE =
   'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), *[tabindex]:not([tabindex="-1"])';
@@ -74,11 +74,11 @@ export function Modal({ title, onClose, children, footer, dismissOnOverlay = fal
       >
         <Split
           start={
-            <Text variant="heading" as="h2" id={titleId}>
+            <BaseText variant="heading" as="h2" id={titleId}>
               {title}
-            </Text>
+            </BaseText>
           }
-          end={<IconButton action="dismiss" label="Close" onClick={onClose} />}
+          end={<CloseButton label="Close" onClick={onClose} />}
         />
         {children}
         {footer}

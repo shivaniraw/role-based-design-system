@@ -1,5 +1,5 @@
 import { cx } from "../lib/cx";
-import { Text } from "../primitives/Text";
+import { BaseText } from "../primitives/text/BaseText";
 
 type LabelProps =
   | { label: string; ariaLabel?: never }
@@ -33,9 +33,9 @@ export function Checkbox({ label, ariaLabel, checked, defaultChecked, onChange, 
         onChange={(event) => onChange?.(event.target.checked)}
       />
       {label ? (
-        <Text variant="body" tone={onAction ? "onAction" : "default"}>
+        <BaseText variant="body" tone={onAction ? "onAction" : "default"}>
           {label}
-        </Text>
+        </BaseText>
       ) : null}
     </label>
   );
@@ -76,9 +76,9 @@ export function OptionBox({ label, checked, defaultChecked, onChange, disabled, 
         />
       </span>
       <span className="whitespace-nowrap">
-        <Text variant="body" tone={disabled ? "muted" : "default"}>
+        <BaseText variant="body" tone={disabled ? "muted" : "default"}>
           {label}
-        </Text>
+        </BaseText>
       </span>
     </label>
   );

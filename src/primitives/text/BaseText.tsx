@@ -1,5 +1,7 @@
-import type { BaseProps } from "../tokens";
-import { cx } from "../lib/cx";
+// INTERNAL. Not exported. Components use it inside; screens use the role text components
+// next to it (PageTitle, MetaText...). A new kind of text is a new role component here.
+import type { BaseProps } from "../../tokens";
+import { cx } from "../../lib/cx";
 
 export type TextVariant = "title" | "heading" | "nav" | "body" | "label" | "table" | "caption";
 export type TextTone = "default" | "secondary" | "muted" | "action" | "error" | "success" | "onAction";
@@ -37,7 +39,7 @@ const TONE: Record<TextTone, string> = {
   onAction: "text-on-action",
 };
 
-export interface TextProps extends BaseProps {
+export interface BaseTextProps extends BaseProps {
   variant: TextVariant;
   tone?: TextTone;
   weight?: TextWeight;
@@ -45,8 +47,7 @@ export interface TextProps extends BaseProps {
   as?: "span" | "p" | "h1" | "h2" | "h3" | "div";
 }
 
-/** All text in a screen goes through this component so type roles stay consistent. */
-export function Text({ variant, tone = "default", weight, truncate, as: Tag = "span", children, ...rest }: TextProps) {
+export function BaseText({ variant, tone = "default", weight, truncate, as: Tag = "span", children, ...rest }: BaseTextProps) {
   return (
     <Tag className={cx(SIZE[variant], WEIGHT[weight ?? DEFAULT_WEIGHT[variant]], TONE[tone], truncate && "truncate")} {...rest}>
       {children}

@@ -1,11 +1,13 @@
-// Every line below must be a TypeScript error: invalid roles and props do not compile.
-import { Button, Stack, Text } from "@onehub/ds";
+// Every line below must be a TypeScript error: roles are components, so prop-based roles,
+// base components and styling escape hatches do not compile.
+import { BaseButton, Button, SaveButton, Stack, BodyText } from "@onehub/ds";
 
-export const T1 = () => <Button action="submit">Go</Button>; // unknown action
-export const T2 = () => (
+export const T1 = () => <Button action="save">Go</Button>; // no generic Button: pick a role component
+export const T2 = () => <BaseButton look="filled">Go</BaseButton>; // BaseButton is internal
+export const T3 = () => (
   <Stack relation="medium">
-    <Text variant="body">x</Text>
+    <BodyText>x</BodyText>
   </Stack>
 ); // unknown relation
-export const T3 = () => <Button action="save" className="x">Save</Button>; // className not accepted
-export const T4 = () => <Text variant="huge">x</Text>; // unknown text variant
+export const T4 = () => <SaveButton className="x" />; // className not accepted
+export const T5 = () => <SaveButton look="outline" />; // a role's look can't be changed

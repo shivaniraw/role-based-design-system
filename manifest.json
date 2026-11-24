@@ -1,24 +1,101 @@
 {
   "name": "onehub-ds",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "import": "@onehub/ds",
   "rules": [
     "Screens import only from '@onehub/ds'.",
     "No className, style, raw HTML elements, hex colors, px values or Tailwind classes in screens.",
     "Space comes from `relation` (between things) and `inset` (inside a box). Never both for one space.",
-    "CTAs are chosen by the ACTION the click performs (`action` prop).",
-    "If nothing fits, stop and report `needs-new-role` or `needs-new-component`. Never invent a value."
+    "Every button, icon button, badge, message and piece of text is a ROLE COMPONENT named for its job: <SaveButton>, <CancelButton>, <PageTitle>, <ErrorBanner>. There is no generic <Button action=...> and no look/variant prop.",
+    "Base components (BaseButton, BaseIconButton, BaseBadge, BaseNotification, BaseText) hold the shared styles and are internal. They are never exported and never used in a screen.",
+    "If no role component fits, stop and report `needs-new-role-component: <name and job>`. A new role is added to the design system as a new component that wraps its Base. Never invent a value or reuse a role for a different job."
   ],
   "relations": {
-    "check_order": ["subtext", "iconLabel", "attached", "choices", "related", "group", "region", "section"],
-    "subtext": { "px": 4, "use": "A line of text and the smaller line under it", "examples": ["User Name -> Admin", "page title -> Version 1 row"] },
-    "iconLabel": { "px": 12, "use": "An icon or checkbox and its text label", "examples": ["nav icon -> label", "search icon -> placeholder", "checkbox -> Prod"] },
-    "attached": { "px": 8, "use": "Other parts of one element", "examples": ["logo -> its name", "breadcrumb items", "version badge -> published text", "tab label -> count badge", "table -> its scrollbar"] },
-    "choices": { "px": 20, "use": "Big clickable boxes in a set. Not tabs", "examples": ["nav items", "Prod <-> Pre-Prod option boxes"] },
-    "related": { "px": 12, "use": "A pair that does one job; items in a list; a heading and the list it names. Not tabs", "examples": ["label -> input", "cards in a list", "All Apps -> its list", "back icon -> page title", "Add Dev_key <-> Add New Word"] },
-    "group": { "px": 28, "use": "Different groups in the same area, stacked or side by side", "examples": ["field -> field", "filter <-> filter", "tab <-> tab", "tabs -> table", "page title <-> action buttons (minimum)"] },
-    "region": { "px": 44, "use": "The main blocks of a modal or card", "examples": ["modal title -> form -> buttons", "page header -> search row", "filters -> tabs", "table -> footer buttons (minimum)"] },
-    "section": { "px": 80, "use": "Different sections of a page", "examples": ["Hero -> Projects -> About -> Contact"] }
+    "check_order": [
+      "subtext",
+      "iconLabel",
+      "attached",
+      "choices",
+      "related",
+      "group",
+      "region",
+      "section"
+    ],
+    "subtext": {
+      "px": 4,
+      "use": "A line of text and the smaller line under it",
+      "examples": [
+        "User Name -> Admin",
+        "page title -> Version 1 row"
+      ]
+    },
+    "iconLabel": {
+      "px": 12,
+      "use": "An icon or checkbox and its text label",
+      "examples": [
+        "nav icon -> label",
+        "search icon -> placeholder",
+        "checkbox -> Prod"
+      ]
+    },
+    "attached": {
+      "px": 8,
+      "use": "Other parts of one element",
+      "examples": [
+        "logo -> its name",
+        "breadcrumb items",
+        "version badge -> published text",
+        "tab label -> count badge",
+        "table -> its scrollbar"
+      ]
+    },
+    "choices": {
+      "px": 20,
+      "use": "Big clickable boxes in a set. Not tabs",
+      "examples": [
+        "nav items",
+        "Prod <-> Pre-Prod option boxes"
+      ]
+    },
+    "related": {
+      "px": 12,
+      "use": "A pair that does one job; items in a list; a heading and the list it names. Not tabs",
+      "examples": [
+        "label -> input",
+        "cards in a list",
+        "All Apps -> its list",
+        "back icon -> page title",
+        "Add Dev_key <-> Add New Word"
+      ]
+    },
+    "group": {
+      "px": 28,
+      "use": "Different groups in the same area, stacked or side by side",
+      "examples": [
+        "field -> field",
+        "filter <-> filter",
+        "tab <-> tab",
+        "tabs -> table",
+        "page title <-> action buttons (minimum)"
+      ]
+    },
+    "region": {
+      "px": 44,
+      "use": "The main blocks of a modal or card",
+      "examples": [
+        "modal title -> form -> buttons",
+        "page header -> search row",
+        "filters -> tabs",
+        "table -> footer buttons (minimum)"
+      ]
+    },
+    "section": {
+      "px": 80,
+      "use": "Different sections of a page",
+      "examples": [
+        "Hero -> Projects -> About -> Contact"
+      ]
+    }
   },
   "insets": {
     "page": "36 all sides: the page frame (use <Page>)",
@@ -32,60 +109,588 @@
     "button": "20 left/right",
     "badge": "8 left/right"
   },
-  "actions": {
-    "create": "Opens a creation flow (Add Dev_key, Add New Word). Filled blue.",
-    "save": "Commits changes (Save, Save as Pending_Dev_key). Filled blue.",
-    "publish": "Releases to an environment. Use <SplitButton>. Filled blue.",
-    "cancel": "Abandons without saving. Outlined.",
-    "switch": "Changes a context (Language). Neutral gray.",
-    "edit": "IconButton: opens details for editing (pencil).",
-    "delete": "IconButton: destroys data (trash, red). Ask for confirmation first.",
-    "dismiss": "IconButton: closes an overlay (x).",
-    "navigate-back": "IconButton: returns to the previous page (arrow).",
-    "copy-key": "IconButton: copies a developer key to the clipboard (link icon). Assumed meaning, confirm with design.",
-    "open": "IconButton: opens a row's details (open-in-new icon). Assumed meaning, confirm with design."
-  },
   "components": [
-    { "name": "Stack", "kind": "layout", "props": "relation, align?, grow?, as?", "use": "Vertical layout of related items.", "avoid": "Margins or padding between items.", "figma": [] },
-    { "name": "Form", "kind": "layout", "props": "relation, onSubmit?", "use": "A vertical stack that is a form.", "avoid": "", "figma": [] },
-    { "name": "Inline", "kind": "layout", "props": "relation, align?, grow?, wrap?", "use": "Horizontal layout of related items.", "avoid": "Using for two things pushed to opposite edges: use Split.", "figma": [] },
-    { "name": "Split", "kind": "layout", "props": "start?, end?, minRelation?, align?", "use": "Two things at opposite edges with a minimum gap (title and buttons; Cancel and Save).", "avoid": "", "figma": [] },
-    { "name": "Box", "kind": "layout", "props": "inset, grow?", "use": "A wrapper that holds padding.", "avoid": "Stacking an inset with a gap to make one space.", "figma": [] },
-    { "name": "Page", "kind": "layout", "props": "", "use": "The page frame next to the nav (36 padding).", "avoid": "", "figma": [] },
-    { "name": "Text", "kind": "type", "props": "variant, tone?, weight?, truncate?, as?", "use": "All text. Variants: title, heading, nav, body, label, table, caption.", "avoid": "Raw text styling.", "figma": [] },
-    { "name": "Button", "kind": "action", "props": "action, children, iconLeading?, iconTrailing?, disabled?, loading?, type?, onClick?", "use": "Any labelled CTA. Pick `action` by what the click does.", "avoid": "Choosing by color. Disabled and loading are states, not actions.", "figma": ["4:34 Base Button", "32:627 Add Button", "32:635 Save Button", "44:649 Save As Button", "44:653 Cancel Button", "32:618 Language Button"] },
-    { "name": "IconButton", "kind": "action", "props": "action, label, surface?, disabled?, onClick?", "use": "Icon-only actions: edit, delete, dismiss, navigate-back, copy-key, open.", "avoid": "Omitting the label.", "figma": [] },
-    { "name": "SplitButton", "kind": "action", "props": "action='publish', children, options, onSelect, disabled?", "use": "Publish with an environment menu (Prod, Pre-Prod).", "avoid": "", "figma": [] },
-    { "name": "TextField", "kind": "field", "props": "label | ariaLabel, required?, message?, status?, value?, defaultValue?, placeholder?, type?, iconLeading?, iconTrailing?, onChange?", "use": "Single-line input, including search and email. status: default, prompt, valid, error, disabled, readonly.", "avoid": "A separate Email component: use type='email' and status.", "figma": ["5:30 Text Input", "45:667 Email input"] },
-    { "name": "SelectField", "kind": "field", "props": "label | ariaLabel, options, placeholder?, value?, defaultValue?, onChange?, required?, message?, status?", "use": "Dropdown.", "avoid": "", "figma": ["5:47 Select Field Input"] },
-    { "name": "TextArea", "kind": "field", "props": "label | ariaLabel, value?, defaultValue?, placeholder?, onChange?, required?, message?, status?", "use": "Multi-line input.", "avoid": "", "figma": ["5:64 Textarea Field"] },
-    { "name": "Checkbox", "kind": "field", "props": "label | ariaLabel, checked?, defaultChecked?, onChange?, disabled?, onAction?", "use": "A checkbox with its label.", "avoid": "", "figma": ["5:84 Checkbox Option"] },
-    { "name": "OptionBox", "kind": "field", "props": "label, checked?, defaultChecked?, onChange?, disabled?", "use": "Bordered checkbox for environments (Prod, Pre-Prod). Place in a Stack/Inline with relation='choices'.", "avoid": "", "figma": ["5:85 Checkbox Stack components"] },
-    { "name": "FileUpload", "kind": "field", "props": "label, file?, onSelect, onRemove, error?, accept?, disabled?", "use": "Screenshot upload: empty, drag-over, filled, error.", "avoid": "", "figma": ["5:65 Image Upload"] },
-    { "name": "Badge", "kind": "display", "props": "kind: version | count | new, tone?, children", "use": "Version pill, tab count, or green 'New' pill.", "avoid": "", "figma": [] },
-    { "name": "Notification", "kind": "feedback", "props": "status: error | success, placement: inline | floating, title, children?, onDismiss?", "use": "Inline validation banner or floating success toast.", "avoid": "", "figma": ["32:457 Toast / Error", "32:464 Toast / Success"] },
-    { "name": "Tabs", "kind": "navigation", "props": "items (value, label, count?), value, onChange, ariaLabel", "use": "Tab bar. Tab sets are data and differ per flow.", "avoid": "", "figma": ["32:148 Tab", "32:149 Tabs"] },
-    { "name": "Card", "kind": "container", "props": "children, footer?", "use": "The page card. Footer is pinned to the bottom.", "avoid": "", "figma": [] },
-    { "name": "Modal", "kind": "container", "props": "title, onClose, children, footer, dismissOnOverlay?", "use": "Dialog. Pass <ModalFooter> as footer.", "avoid": "", "figma": [] },
-    { "name": "ModalFooter", "kind": "container", "props": "start, end", "use": "Modal footer: Cancel at start, Save at end.", "avoid": "", "figma": [] },
-    { "name": "Breadcrumb", "kind": "navigation", "props": "items, homeHref?", "use": "Home icon and trail.", "avoid": "", "figma": [] },
-    { "name": "Avatar", "kind": "display", "props": "name", "use": "Initial in a gradient ring.", "avoid": "", "figma": ["32:114 Avatar"] },
-    { "name": "ProfileMenu", "kind": "navigation", "props": "name, subtitle, onClick?", "use": "Avatar, name block and chevron.", "avoid": "", "figma": ["32:116 Profile Menu"] },
-    { "name": "Logo", "kind": "display", "props": "name", "use": "Logo mark and name. Placeholder mark: replace the asset.", "avoid": "", "figma": ["32:60 Logo"] },
-    { "name": "AppSelector", "kind": "navigation", "props": "value, options, onChange, ariaLabel", "use": "Pill dropdown (language).", "avoid": "", "figma": ["32:56 App Selector"] },
-    { "name": "LeftNav", "kind": "navigation", "props": "appName, language, languageOptions, onLanguageChange, sectionLabel, items, selectedId, onSelect", "use": "Left navigation.", "avoid": "", "figma": ["32:63 Left Nav bar", "32:55 Nav tabs"] },
-    { "name": "TopBar", "kind": "navigation", "props": "breadcrumb, userName, userSubtitle", "use": "72px top bar.", "avoid": "", "figma": ["32:124 Top Bar"] },
-    { "name": "AppShell", "kind": "layout", "props": "nav, header, children", "use": "Left nav on the left; top bar and page on the right.", "avoid": "", "figma": [] },
-    { "name": "DataTable", "kind": "data", "props": "columns, rows, getRowKey, ariaLabel, emptyMessage?", "use": "Table with blue header; scrolls inside its card. Build cells with the *Cell components.", "avoid": "Raw <table>.", "figma": ["32:184 Data Table", "32:313 Data Table Section", "32:162 Table Header Cell", "32:180 Table Cell"] },
-    { "name": "TextCell", "kind": "data", "props": "children, lines?: 1 | 2", "use": "Text cell, truncated (1 line, or 2 with lines=2) with a tooltip.", "avoid": "", "figma": [] },
-    { "name": "NumberCell", "kind": "data", "props": "children", "use": "Number cell (Sr. No.).", "avoid": "", "figma": [] },
-    { "name": "ScreenshotCell", "kind": "data", "props": "src?, alt", "use": "Screenshot thumbnail cell.", "avoid": "", "figma": [] },
-    { "name": "DropdownCell", "kind": "data", "props": "ariaLabel, options, value, onChange", "use": "Dropdown inside a table cell.", "avoid": "", "figma": [] },
-    { "name": "InputCell", "kind": "data", "props": "ariaLabel, value, placeholder?, error?, onChange", "use": "Input inside a table cell. Border: blue empty, neutral filled, red error.", "avoid": "", "figma": [] },
-    { "name": "CheckboxCell", "kind": "data", "props": "ariaLabel, checked, onChange", "use": "Checkbox inside a table cell.", "avoid": "", "figma": [] },
-    { "name": "DevKeyCell", "kind": "data", "props": "devKey, flag?: new | updated, onCopy?", "use": "A developer key chip with a copy button. flag='new' shows a green New pill, 'updated' a green dot.", "avoid": "Plain TextCell for developer keys.", "figma": [] },
-    { "name": "TextAreaCell", "kind": "data", "props": "ariaLabel, value, onChange", "use": "Multi-line text box inside a table cell.", "avoid": "", "figma": [] },
-    { "name": "EnvironmentPairCell", "kind": "data", "props": "ariaLabel, prod, preProd, onChange", "use": "Prod and Pre-Prod boxes side by side in one cell (pair with a select-all Checkbox in the header).", "avoid": "", "figma": [] },
-    { "name": "EnvironmentCell", "kind": "data", "props": "environment: Prod | Pre-Prod, ariaLabel, checked, locked?, onChange", "use": "One environment box in a table row. locked = already live there, cannot be changed.", "avoid": "", "figma": [] }
-  ]
+    {
+      "name": "PageTitle",
+      "kind": "text",
+      "props": "children: string",
+      "use": "The page's one title, h1.",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "SectionHeading",
+      "kind": "text",
+      "props": "children: string",
+      "use": "Heading of a section inside a page or card, h2.",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "BodyText",
+      "kind": "text",
+      "props": "children: string",
+      "use": "Running text.",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "EmptyMessage",
+      "kind": "text",
+      "props": "children: string",
+      "use": "Says a list or tab is empty.",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "MetaText",
+      "kind": "text",
+      "props": "children: string",
+      "use": "Small facts about the page, such as the published date.",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "GroupLabel",
+      "kind": "text",
+      "props": "children: string",
+      "use": "Label for a group of options with no single field label.",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "AddButton",
+      "kind": "action",
+      "props": "children: string, disabled?, loading?, type?, onClick?",
+      "use": "Starts creating something new.",
+      "avoid": "",
+      "figma": [
+        "32:627 Add Button",
+        "4:34 Base Button"
+      ]
+    },
+    {
+      "name": "SaveButton",
+      "kind": "action",
+      "props": "children?: string (default 'Save'), disabled?, loading?, type?, onClick?",
+      "use": "Keeps changes.",
+      "avoid": "",
+      "figma": [
+        "32:635 Save Button",
+        "4:34 Base Button"
+      ]
+    },
+    {
+      "name": "SaveAsButton",
+      "kind": "action",
+      "props": "target: string, disabled?, loading?, type?, onClick?",
+      "use": "Saves into another named state: 'Save as <target>'.",
+      "avoid": "",
+      "figma": [
+        "44:649 Save As Button",
+        "4:34 Base Button"
+      ]
+    },
+    {
+      "name": "CancelButton",
+      "kind": "action",
+      "props": "disabled?, loading?, type?, onClick?",
+      "use": "Leaves without saving. Always reads 'Cancel'.",
+      "avoid": "",
+      "figma": [
+        "44:653 Cancel Button",
+        "4:34 Base Button"
+      ]
+    },
+    {
+      "name": "LanguageButton",
+      "kind": "action",
+      "props": "language: string, disabled?, loading?, type?, onClick?",
+      "use": "Switches the working language.",
+      "avoid": "",
+      "figma": [
+        "32:618 Language Button",
+        "4:34 Base Button"
+      ]
+    },
+    {
+      "name": "PublishButton",
+      "kind": "action",
+      "props": "environments: string[], onSelect, disabled?",
+      "use": "Publishes to an environment picked from its menu.",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "PublishToTestButton",
+      "kind": "action",
+      "props": "disabled?, loading?, type?, onClick?",
+      "use": "Publishes to the test app.",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "EditButton",
+      "kind": "action",
+      "props": "label, disabled?, onClick?",
+      "use": "Pencil icon: edit details.",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "DeleteButton",
+      "kind": "action",
+      "props": "label, disabled?, onClick?",
+      "use": "Bin icon in red: remove.",
+      "avoid": "Deleting without confirmation.",
+      "figma": []
+    },
+    {
+      "name": "CloseButton",
+      "kind": "action",
+      "props": "label, disabled?, onClick?",
+      "use": "Cross icon: close or dismiss.",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "BackButton",
+      "kind": "action",
+      "props": "label, disabled?, onClick?",
+      "use": "Left arrow: previous page.",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "CopyKeyButton",
+      "kind": "action",
+      "props": "label, disabled?, onClick?",
+      "use": "Link icon: copy a developer key.",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "OpenButton",
+      "kind": "action",
+      "props": "label, disabled?, onClick?",
+      "use": "Open-in-new icon: open row details.",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "VersionBadge",
+      "kind": "display",
+      "props": "version: number",
+      "use": "'Version 1' pill.",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "CountBadge",
+      "kind": "display",
+      "props": "count: number",
+      "use": "Round count.",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "NewBadge",
+      "kind": "display",
+      "props": "(none)",
+      "use": "Green 'New' pill.",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "ErrorBanner",
+      "kind": "feedback",
+      "props": "title, children?",
+      "use": "Inline problem the user must fix.",
+      "avoid": "",
+      "figma": [
+        "32:457 Toast / Error"
+      ]
+    },
+    {
+      "name": "SuccessBanner",
+      "kind": "feedback",
+      "props": "title, children?",
+      "use": "Inline success.",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "ErrorToast",
+      "kind": "feedback",
+      "props": "title, children?, onDismiss",
+      "use": "Floating problem after an action.",
+      "avoid": "",
+      "figma": [
+        "32:457 Toast / Error"
+      ]
+    },
+    {
+      "name": "SuccessToast",
+      "kind": "feedback",
+      "props": "title, children?, onDismiss",
+      "use": "Floating confirmation after an action.",
+      "avoid": "",
+      "figma": [
+        "32:464 Toast / Success"
+      ]
+    },
+    {
+      "name": "Stack",
+      "kind": "layout",
+      "props": "relation, align?, grow?, as?",
+      "use": "Vertical layout of related items.",
+      "avoid": "Margins or padding between items.",
+      "figma": []
+    },
+    {
+      "name": "Form",
+      "kind": "layout",
+      "props": "relation, onSubmit?",
+      "use": "A vertical stack that is a form.",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "Inline",
+      "kind": "layout",
+      "props": "relation, align?, grow?, wrap?",
+      "use": "Horizontal layout of related items.",
+      "avoid": "Using for two things pushed to opposite edges: use Split.",
+      "figma": []
+    },
+    {
+      "name": "Split",
+      "kind": "layout",
+      "props": "start?, end?, minRelation?, align?",
+      "use": "Two things at opposite edges with a minimum gap (title and buttons; Cancel and Save).",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "Box",
+      "kind": "layout",
+      "props": "inset, grow?",
+      "use": "A wrapper that holds padding.",
+      "avoid": "Stacking an inset with a gap to make one space.",
+      "figma": []
+    },
+    {
+      "name": "Page",
+      "kind": "layout",
+      "props": "",
+      "use": "The page frame next to the nav (36 padding).",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "TextField",
+      "kind": "field",
+      "props": "label | ariaLabel, required?, message?, status?, value?, defaultValue?, placeholder?, type?, iconLeading?, iconTrailing?, onChange?",
+      "use": "Single-line input, including search and email. status: default, prompt, valid, error, disabled, readonly.",
+      "avoid": "A separate Email component: use type='email' and status.",
+      "figma": [
+        "5:30 Text Input",
+        "45:667 Email input"
+      ]
+    },
+    {
+      "name": "SelectField",
+      "kind": "field",
+      "props": "label | ariaLabel, options, placeholder?, value?, defaultValue?, onChange?, required?, message?, status?",
+      "use": "Dropdown.",
+      "avoid": "",
+      "figma": [
+        "5:47 Select Field Input"
+      ]
+    },
+    {
+      "name": "TextArea",
+      "kind": "field",
+      "props": "label | ariaLabel, value?, defaultValue?, placeholder?, onChange?, required?, message?, status?",
+      "use": "Multi-line input.",
+      "avoid": "",
+      "figma": [
+        "5:64 Textarea Field"
+      ]
+    },
+    {
+      "name": "Checkbox",
+      "kind": "field",
+      "props": "label | ariaLabel, checked?, defaultChecked?, onChange?, disabled?, onAction?",
+      "use": "A checkbox with its label.",
+      "avoid": "",
+      "figma": [
+        "5:84 Checkbox Option"
+      ]
+    },
+    {
+      "name": "OptionBox",
+      "kind": "field",
+      "props": "label, checked?, defaultChecked?, onChange?, disabled?",
+      "use": "Bordered checkbox for environments (Prod, Pre-Prod). Place in a Stack/Inline with relation='choices'.",
+      "avoid": "",
+      "figma": [
+        "5:85 Checkbox Stack components"
+      ]
+    },
+    {
+      "name": "FileUpload",
+      "kind": "field",
+      "props": "label, file?, onSelect, onRemove, error?, accept?, disabled?",
+      "use": "Screenshot upload: empty, drag-over, filled, error.",
+      "avoid": "",
+      "figma": [
+        "5:65 Image Upload"
+      ]
+    },
+    {
+      "name": "Tabs",
+      "kind": "navigation",
+      "props": "items (value, label, count?), value, onChange, ariaLabel",
+      "use": "Tab bar. Tab sets are data and differ per flow.",
+      "avoid": "",
+      "figma": [
+        "32:148 Tab",
+        "32:149 Tabs"
+      ]
+    },
+    {
+      "name": "Card",
+      "kind": "container",
+      "props": "children, footer?",
+      "use": "The page card. Footer is pinned to the bottom.",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "Modal",
+      "kind": "container",
+      "props": "title, onClose, children, footer, dismissOnOverlay?",
+      "use": "Dialog. Pass <ModalFooter> as footer.",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "ModalFooter",
+      "kind": "container",
+      "props": "start, end",
+      "use": "Modal footer: Cancel at start, Save at end.",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "Breadcrumb",
+      "kind": "navigation",
+      "props": "items, homeHref?",
+      "use": "Home icon and trail.",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "Avatar",
+      "kind": "display",
+      "props": "name",
+      "use": "Initial in a gradient ring.",
+      "avoid": "",
+      "figma": [
+        "32:114 Avatar"
+      ]
+    },
+    {
+      "name": "ProfileMenu",
+      "kind": "navigation",
+      "props": "name, subtitle, onClick?",
+      "use": "Avatar, name block and chevron.",
+      "avoid": "",
+      "figma": [
+        "32:116 Profile Menu"
+      ]
+    },
+    {
+      "name": "Logo",
+      "kind": "display",
+      "props": "name",
+      "use": "Logo mark and name. Placeholder mark: replace the asset.",
+      "avoid": "",
+      "figma": [
+        "32:60 Logo"
+      ]
+    },
+    {
+      "name": "AppSelector",
+      "kind": "navigation",
+      "props": "value, options, onChange, ariaLabel",
+      "use": "Pill dropdown (language).",
+      "avoid": "",
+      "figma": [
+        "32:56 App Selector"
+      ]
+    },
+    {
+      "name": "LeftNav",
+      "kind": "navigation",
+      "props": "appName, language, languageOptions, onLanguageChange, sectionLabel, items, selectedId, onSelect",
+      "use": "Left navigation.",
+      "avoid": "",
+      "figma": [
+        "32:63 Left Nav bar",
+        "32:55 Nav tabs"
+      ]
+    },
+    {
+      "name": "TopBar",
+      "kind": "navigation",
+      "props": "breadcrumb, userName, userSubtitle",
+      "use": "72px top bar.",
+      "avoid": "",
+      "figma": [
+        "32:124 Top Bar"
+      ]
+    },
+    {
+      "name": "AppShell",
+      "kind": "layout",
+      "props": "nav, header, children",
+      "use": "Left nav on the left; top bar and page on the right.",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "DataTable",
+      "kind": "data",
+      "props": "columns, rows, getRowKey, ariaLabel, emptyMessage?",
+      "use": "Table with blue header; scrolls inside its card. Build cells with the *Cell components.",
+      "avoid": "Raw <table>.",
+      "figma": [
+        "32:184 Data Table",
+        "32:313 Data Table Section",
+        "32:162 Table Header Cell",
+        "32:180 Table Cell"
+      ]
+    },
+    {
+      "name": "TextCell",
+      "kind": "data",
+      "props": "children, lines?: 1 | 2",
+      "use": "Text cell, truncated (1 line, or 2 with lines=2) with a tooltip.",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "NumberCell",
+      "kind": "data",
+      "props": "children",
+      "use": "Number cell (Sr. No.).",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "ScreenshotCell",
+      "kind": "data",
+      "props": "src?, alt",
+      "use": "Screenshot thumbnail cell.",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "DropdownCell",
+      "kind": "data",
+      "props": "ariaLabel, options, value, onChange",
+      "use": "Dropdown inside a table cell.",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "InputCell",
+      "kind": "data",
+      "props": "ariaLabel, value, placeholder?, error?, onChange",
+      "use": "Input inside a table cell. Border: blue empty, neutral filled, red error.",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "CheckboxCell",
+      "kind": "data",
+      "props": "ariaLabel, checked, onChange",
+      "use": "Checkbox inside a table cell.",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "DevKeyCell",
+      "kind": "data",
+      "props": "devKey, flag?: new | updated, onCopy?",
+      "use": "A developer key chip with a copy button. flag='new' shows a green New pill, 'updated' a green dot.",
+      "avoid": "Plain TextCell for developer keys.",
+      "figma": []
+    },
+    {
+      "name": "TextAreaCell",
+      "kind": "data",
+      "props": "ariaLabel, value, onChange",
+      "use": "Multi-line text box inside a table cell.",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "EnvironmentPairCell",
+      "kind": "data",
+      "props": "ariaLabel, prod, preProd, onChange",
+      "use": "Prod and Pre-Prod boxes side by side in one cell (pair with a select-all Checkbox in the header).",
+      "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "EnvironmentCell",
+      "kind": "data",
+      "props": "environment: Prod | Pre-Prod, ariaLabel, checked, locked?, onChange",
+      "use": "One environment box in a table row. locked = already live there, cannot be changed.",
+      "avoid": "",
+      "figma": []
+    }
+  ],
+  "roles": {
+    "how": "Pick the component whose job matches what the element does. The look comes with the role.",
+    "buttons": {
+      "AddButton": "Starts creating something new (Add New Word, Add Dev_key). Filled.",
+      "SaveButton": "Keeps changes (Save, Preview & Save). Filled.",
+      "SaveAsButton": "Saves into another named state (Save as Pending_Dev_key). Filled.",
+      "CancelButton": "Leaves without saving. Outline.",
+      "LanguageButton": "Switches the working language. Grey.",
+      "PublishButton": "Publishes to an environment chosen from a menu (Prod, Pre-Prod). Filled, split.",
+      "PublishToTestButton": "Publishes to the test app. Filled."
+    },
+    "iconButtons": {
+      "EditButton": "Pencil: edit details.",
+      "DeleteButton": "Bin, red: remove. Ask for confirmation first.",
+      "CloseButton": "Cross: close a modal or message.",
+      "BackButton": "Left arrow: previous page.",
+      "CopyKeyButton": "Link: copy a developer key (assumed).",
+      "OpenButton": "Open-in-new: open row details (assumed)."
+    },
+    "badges": {
+      "VersionBadge": "Published version.",
+      "CountBadge": "How many items.",
+      "NewBadge": "Newly created item."
+    },
+    "messages": {
+      "ErrorBanner": "Inline problem to fix.",
+      "SuccessBanner": "Inline success.",
+      "ErrorToast": "Floating problem after an action.",
+      "SuccessToast": "Floating confirmation after an action."
+    },
+    "text": {
+      "PageTitle": "The page's one title (h1).",
+      "SectionHeading": "A section inside a page (h2).",
+      "BodyText": "Running text.",
+      "EmptyMessage": "An empty list or tab.",
+      "MetaText": "Small facts about the page (published date).",
+      "GroupLabel": "Label for a group of options."
+    }
+  }
 }

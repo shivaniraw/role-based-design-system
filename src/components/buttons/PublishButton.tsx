@@ -1,24 +1,24 @@
 import { useEffect, useRef, useState } from "react";
-import { Icon } from "../icons";
-import { cx } from "../lib/cx";
-import { BUTTON_BASE, BUTTON_LOOK } from "./Button";
+import { Icon } from "../../icons";
+import { cx } from "../../lib/cx";
+import { BUTTON_LOOK, BUTTON_SHAPE } from "./BaseButton";
 
-export interface SplitButtonProps {
-  action: "publish";
-  /** Button label, for example "Publish". */
-  children: string;
+export interface PublishButtonProps {
   /** The environments the user can publish to, for example ["Prod", "Pre-Prod"]. */
-  options: string[];
+  environments: string[];
   /** Called with the chosen environment. */
-  onSelect: (option: string) => void;
+  onSelect: (environment: string) => void;
   disabled?: boolean;
 }
 
+const LABEL = "Publish";
+
 /**
- * Publish control. Both halves open the environment menu, because the user must choose
- * the target before anything is published. (Assumption; confirm with design.)
+ * Publishes to an environment the user picks from the menu (Prod, Pre-Prod).
+ * Both halves open the menu, because the target must be chosen before anything goes live.
+ * Built from the BaseButton shape and filled look, split in two.
  */
-export function SplitButton({ children, options, onSelect, disabled }: SplitButtonProps) {
+export function PublishButton({ environments: options, onSelect, disabled }: PublishButtonProps) {
   const [open, setOpen] = useState(false);
   const root = useRef<HTMLDivElement>(null);
 
@@ -48,19 +48,19 @@ export function SplitButton({ children, options, onSelect, disabled }: SplitButt
         aria-haspopup="menu"
         aria-expanded={open}
         onClick={toggle}
-        className={cx(BUTTON_BASE, BUTTON_LOOK.filled, "rounded-r-none")}
+        className={cx(BUTTON_SHAPE, BUTTON_LOOK.filled, "rounded-r-none")}
       >
-        {children}
+        {LABEL}
       </button>
       <button
         type="button"
         disabled={disabled}
-        aria-label={`${children}: choose environment`}
+        aria-label={`${LABEL}: choose environment`}
         aria-haspopup="menu"
         aria-expanded={open}
         onClick={toggle}
         className={cx(
-          BUTTON_BASE,
+          BUTTON_SHAPE,
           BUTTON_LOOK.filled,
           "rounded-l-none border-l border-action-pressed px-inset-badge-x disabled:border-action-hover",
         )}

@@ -35,8 +35,8 @@ export default defineConfig(
         {
           patterns: [
             {
-              group: ["**/components/*", "**/primitives/*", "**/tokens", "**/icons", "**/lib/*"],
-              message: "Screens import only from '@onehub/ds'.",
+              group: ["**/components/**", "**/primitives/**", "**/tokens", "**/icons", "**/lib/**"],
+              message: "Screens import only from '@onehub/ds'. Base components (BaseButton, BaseText...) are internal: use a role component.",
             },
           ],
         },
