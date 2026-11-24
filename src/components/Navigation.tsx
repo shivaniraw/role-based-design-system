@@ -42,7 +42,7 @@ export interface NavEntry {
 }
 
 /**
- * Figma: Nav tabs (32:55). 54 tall, 22 side padding, 24 icon + 12 gap + Nav/24 Regular #424242.
+ * Figma: Nav tabs (32:55). 54 tall, 22 side padding, 24 icon + 12 gap + 20px Regular #424242 (`text-nav-item`).
  * Selected: #F2F7FF fill, radius 8, blue text and icon.
  */
 function NavItem({ entry, selected, onSelect }: { entry: NavEntry; selected: boolean; onSelect: (id: string) => void }) {
@@ -57,7 +57,7 @@ function NavItem({ entry, selected, onSelect }: { entry: NavEntry; selected: boo
       )}
     >
       <Icon name={entry.icon} />
-      <span className="min-w-zero grow truncate text-nav tracking-nav">{entry.label}</span>
+      <span className="min-w-zero grow truncate text-nav-item tracking-nav">{entry.label}</span>
     </button>
   );
 }
@@ -96,7 +96,7 @@ export function LeftNav({
         </Box>
         <AppSelector value={language} options={languageOptions} onChange={onLanguageChange} ariaLabel="Language" />
         <Box inset="controlX">
-          <BaseText variant="label" tone="muted">
+          <BaseText variant="title" tone="secondary">
             {sectionLabel}
           </BaseText>
         </Box>

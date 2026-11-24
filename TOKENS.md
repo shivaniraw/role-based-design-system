@@ -56,3 +56,7 @@ Language, Error, Success, Checkbox On/Off).
 | Text Input / Select border | #E0E0E0 (component), #BDBDBD (screens) | #E0E0E0 |
 
 One spacing change follows Figma: "All Apps" to the nav list is now `group` (Figma 30), not `related`.
+
+## Side nav type
+Nav item labels and the "All Apps" heading are 20px (`text-nav-item` and the `title` text role). The language
+selector was already 20px. The brand name stays at Display 28, and the breadcrumb and page title stay at 24.
