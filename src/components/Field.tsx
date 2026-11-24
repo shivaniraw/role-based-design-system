@@ -62,7 +62,7 @@ function FieldShell({
   );
   if (!label) return control;
   return (
-    <Stack relation="related">
+    <Stack relation="subtext">
       <label htmlFor={id} className="text-body font-medium text-text-muted">
         {label}
         {required ? <span className="text-required">*</span> : null}

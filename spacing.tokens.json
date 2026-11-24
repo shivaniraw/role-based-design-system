@@ -3,7 +3,7 @@
     "subtext": {
       "$type": "dimension",
       "$value": { "value": 6, "unit": "px" },
-      "$description": "A line of text and the smaller line under it that describes it. Examples: User Name → Admin, an input → its helper line. (Page title → Version row has no gap; PageHeading owns it.)"
+      "$description": "A line of text and the smaller line under it that describes it. Examples: field label → its input (Select Page → its dropdown), User Name → Admin, an input → its helper line. (Page title → Version row has no gap; PageHeading owns it.)"
     },
     "icon-label": {
       "$type": "dimension",
@@ -23,7 +23,7 @@
     "related": {
       "$type": "dimension",
       "$value": { "value": 12, "unit": "px" },
-      "$description": "A pair that does one job, items in a list, or a heading and the list it names. Examples: label → input, nav items, cards in a list, All Apps → its list, back icon → page title, two buttons side by side. Not for tabs → their content (use spacing/group)."
+      "$description": "A pair that does one job, items in a list, or a heading and the list it names. Examples: nav items, cards in a list, All Apps → its list, back icon → page title, two buttons side by side. Not for tabs → their content (use spacing/group)."
     },
     "group": {
       "$type": "dimension",

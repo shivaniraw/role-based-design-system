@@ -22,7 +22,7 @@ Look at the two things on either side of the gap, then check these IN ORDER and 
 
 | # | relation | px | Use when the two things are |
 |---|---|---|---|
-| 1 | `subtext` | 6 | A line of text and the smaller line under it |
+| 1 | `subtext` | 6 | A line of text and the smaller line under it; a field label and its input |
 | 2 | `iconLabel` | 12 | An icon or checkbox and its text label |
 | 3 | `attached` | 8 | Other parts of one element (logo and name, tab label and count) |
 | 4 | `choices` | 20 | Big clickable boxes in a set (Prod / Pre-Prod boxes). Not tabs |

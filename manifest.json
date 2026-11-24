@@ -25,6 +25,7 @@
       "px": 6,
       "use": "A line of text and the smaller line under it",
       "examples": [
+        "field label -> its input (Select Page -> its dropdown)",
         "User Name -> Admin",
         "input -> its helper or error line"
       ]
@@ -60,7 +61,6 @@
       "px": 12,
       "use": "A pair that does one job; items in a list; a heading and the list it names. Not tabs",
       "examples": [
-        "label -> input",
         "nav items",
         "cards in a list",
         "All Apps -> its list",
