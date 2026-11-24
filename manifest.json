@@ -114,8 +114,16 @@
       "name": "PageTitle",
       "kind": "text",
       "props": "children: string",
-      "use": "The page's one title, h1.",
+      "use": "The page's one title, h1, 20 Medium. On a page with a back arrow, use PageHeading instead.",
       "avoid": "",
+      "figma": []
+    },
+    {
+      "name": "PageHeading",
+      "kind": "layout",
+      "props": "title: string; backLabel?: string; onBack?: () => void; meta?: ReactNode",
+      "use": "Back arrow + PageTitle, with an optional line under the title (VersionBadge). The arrow is centered on the title line.",
+      "avoid": "Don't build a BackButton + PageTitle row by hand.",
       "figma": []
     },
     {

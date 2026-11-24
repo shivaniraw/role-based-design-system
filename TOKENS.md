@@ -59,8 +59,13 @@ One spacing change follows Figma: "All Apps" to the nav list is now `group` (Fig
 
 ## Side nav type
 Nav item labels and the "All Apps" heading are 20px (`text-nav-item` and the `title` text role). The language
-selector was already 20px. The brand name stays at Display 28, and the page title stays at 24.
+selector was already 20px. The brand name stays at Display 28.
 
 ## Top bar type
 The breadcrumb page name ("Translation Management System") is 20px Regular, using the `title` text role.
 It is set inside the Breadcrumb component, so every screen that uses TopBar picks it up.
+
+## Page title
+PageTitle is 20px Medium (`title` text role). The old 24px `nav` size is no longer used and was removed.
+PageHeading lays out the back arrow and the title: the arrow sits in a box one title line tall, so it is
+centered on the title line, and the version line under it lines up with the title text.

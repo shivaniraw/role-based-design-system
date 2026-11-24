@@ -2,7 +2,6 @@ import { useState } from "react";
 import {
   AddButton,
   AppShell,
-  BackButton,
   Box,
   CancelButton,
   Card,
@@ -11,7 +10,7 @@ import {
   Inline,
   LeftNav,
   Page,
-  PageTitle,
+  PageHeading,
   PublishButton,
   PublishToTestButton,
   SaveButton,
@@ -199,13 +198,10 @@ export function TranslationScreen({
                 minRelation="group"
                 align="start"
                 start={
-                  <Inline relation="related" align="start">
-                    <BackButton label="Back" />
-                    <Stack relation="subtext">
-                      <PageTitle>Select the page or module you want to translate</PageTitle>
-                      <VersionBadge version={1} published="Published on: 23 Apr 2026, 15:30 IST by Admin" />
-                    </Stack>
-                  </Inline>
+                  <PageHeading
+                    title="Select the page or module you want to translate"
+                    meta={<VersionBadge version={1} published="Published on: 23 Apr 2026, 15:30 IST by Admin" />}
+                  />
                 }
                 end={
                   <Inline relation="related">

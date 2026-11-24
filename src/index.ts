@@ -31,6 +31,7 @@ export { EditButton } from "./components/icon-buttons/EditButton";
 export { DeleteButton } from "./components/icon-buttons/DeleteButton";
 export { CloseButton } from "./components/icon-buttons/CloseButton";
 export { BackButton } from "./components/icon-buttons/BackButton";
+export { PageHeading, type PageHeadingProps } from "./components/PageHeading";
 export { CopyKeyButton } from "./components/icon-buttons/CopyKeyButton";
 export { OpenButton } from "./components/icon-buttons/OpenButton";
 
