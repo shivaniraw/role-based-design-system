@@ -81,6 +81,7 @@ centered on the title line. The version line sits 6px (`subtext`) under the titl
 | Left nav width (`nav-w`) | 379 | 330 |
 | Title style (`text-title`) | 20 Medium | 18 Medium: brand name, page title, modal title |
 | Nav tab text (`text-nav-item`) | 18 Regular | 18 Regular (matches the Figma style) |
+| Tab label (`text-tab`) | 18 Medium | 16 Medium: Pending Dev Keys, Active Translations, Archived |
 | "All Apps" heading | 20 | Label 14 Medium, muted (as in Figma) |
 | Upload box (`upload-h`) | 100 | 140 |
 | Dashed stroke (`--dash-border-dashed`) | CSS dashed | 1px, dash 4, gap 2, drawn by the internal DashedOutline so it matches Figma |

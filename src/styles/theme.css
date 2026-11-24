@@ -180,8 +180,10 @@
   --text-nav-item--line-height: 1.25;
   --text-title: 18px; /* Figma: Title/18 Medium: brand name, page title, modal title */
   --text-title--line-height: 1.25;
-  --text-heading: 18px; /* Figma: Tab/18 Medium */
+  --text-heading: 18px; /* Section headings */
   --text-heading--line-height: 1.25;
+  --text-tab: 16px; /* Figma: Tab/16 Medium: tab labels */
+  --text-tab--line-height: 1.25;
   --text-input: 16px; /* Figma: Input/16 Regular, Table/Header 16 Medium */
   --text-input--line-height: 1.3;
   --text-button: 16px; /* Figma: Button/16 Medium */

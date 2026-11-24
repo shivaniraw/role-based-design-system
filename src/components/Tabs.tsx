@@ -19,7 +19,7 @@ export interface TabsProps {
 
 /**
  * Figma: Tabs (32:149) / Tab (32:148). #F1F7FF bar, tabs share the width, `group` apart (Figma 30).
- * Tab: 56 tall, Tab/18 Medium, 10 gap to the badge. Default: #757575 label, 2px #D9D9D9 underline.
+ * Tab: 56 tall, Tab/16 Medium, 10 gap to the badge. Default: #757575 label, 2px #D9D9D9 underline.
  * Selected: #4C86F9 label, 4px #4285F4 underline.
  */
 export function Tabs({ items, value, onChange, ariaLabel }: TabsProps) {
@@ -60,7 +60,7 @@ export function Tabs({ items, value, onChange, ariaLabel }: TabsProps) {
             onClick={() => onChange(item.value)}
             onKeyDown={(event) => onKeyDown(event, index)}
             className={cx(
-              "flex h-tab-h flex-1 cursor-pointer items-center justify-center gap-attached text-heading font-medium tracking-tab focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-action",
+              "flex h-tab-h flex-1 cursor-pointer items-center justify-center gap-attached text-tab font-medium tracking-tab focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-action",
               active
                 ? "border-b-4 border-action text-action-strong"
                 : "border-b-2 border-border-tab text-text-muted hover:text-text-secondary",
