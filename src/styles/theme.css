@@ -176,11 +176,11 @@
 
   --text-display: 28px; /* Figma: Display/28 Medium (brand name) */
   --text-display--line-height: 1.25;
-  --text-nav-item: 20px; /* Side nav: item labels and the "All Apps" heading */
+  --text-nav-item: 18px; /* Side nav: item labels */
   --text-nav-item--line-height: 1.25;
   --text-title: 20px; /* Title/20 Medium: page title, modal title, side nav selector; breadcrumb uses it at Regular */
   --text-title--line-height: 1.25;
-  --text-heading: 18px; /* Figma: Tab/18 Medium */
+  --text-heading: 18px; /* Tab/18 Medium and the page title */
   --text-heading--line-height: 1.25;
   --text-input: 16px; /* Figma: Input/16 Regular, Table/Header 16 Medium */
   --text-input--line-height: 1.3;

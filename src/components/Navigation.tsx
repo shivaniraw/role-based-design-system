@@ -42,7 +42,7 @@ export interface NavEntry {
 }
 
 /**
- * Figma: Nav tabs (32:55). 54 tall, 22 side padding, 24 icon + 12 gap + 20px Regular #424242 (`text-nav-item`).
+ * Figma: Nav tabs (32:55). 54 tall, 22 side padding, 24 icon + 12 gap + 18px Regular #424242 (`text-nav-item`).
  * Selected: #F2F7FF fill, radius 8, blue text and icon.
  */
 function NavItem({ entry, selected, onSelect }: { entry: NavEntry; selected: boolean; onSelect: (id: string) => void }) {

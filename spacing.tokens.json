@@ -3,7 +3,7 @@
     "subtext": {
       "$type": "dimension",
       "$value": { "value": 6, "unit": "px" },
-      "$description": "A line of text and the smaller line under it that describes it. Examples: User Name → Admin, page title → Version 1 row."
+      "$description": "A line of text and the smaller line under it that describes it. Examples: User Name → Admin, an input → its helper line. (Page title → Version row has no gap; PageHeading owns it.)"
     },
     "icon-label": {
       "$type": "dimension",

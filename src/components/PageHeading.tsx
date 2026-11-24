@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { BackButton } from "./icon-buttons/BackButton";
-import { Stack } from "../primitives/Stack";
 import { PageTitle } from "../primitives/text/PageTitle";
 
 export interface PageHeadingProps {
@@ -15,19 +14,19 @@ export interface PageHeadingProps {
 
 /**
  * Back arrow + page title, with an optional line under the title.
- * The arrow sits in a box exactly one title line tall (`h-lh` inside `text-title`), so it is always
- * centered on the title's first line, whatever the title size. The meta line lines up with the title text.
+ * The arrow sits in a box exactly one title line tall (`h-lh` inside `text-heading`, PageTitle's size), so it is always
+ * centered on the title's first line, whatever the title size. The meta line sits directly under the title (no gap) and lines up with the title text.
  */
 export function PageHeading({ title, backLabel = "Back", onBack, meta }: PageHeadingProps) {
   return (
     <div className="flex items-start gap-related">
-      <span className="flex h-lh shrink-0 items-center text-title">
+      <span className="flex h-lh shrink-0 items-center text-heading">
         <BackButton label={backLabel} onClick={onBack} />
       </span>
-      <Stack relation="subtext">
+      <div className="flex flex-col">
         <PageTitle>{title}</PageTitle>
         {meta}
-      </Stack>
+      </div>
     </div>
   );
 }

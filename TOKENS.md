@@ -58,7 +58,7 @@ Language, Error, Success, Checkbox On/Off).
 One spacing change follows Figma: "All Apps" to the nav list is now `group` (Figma 30), not `related`.
 
 ## Side nav type
-Nav item labels and the "All Apps" heading are 20px (`text-nav-item` and the `title` text role). The language
+Nav item labels are 18px (`text-nav-item`); the "All Apps" heading is 20px (`title` text role). The language
 selector was already 20px. The brand name stays at Display 28.
 
 ## Top bar type
@@ -66,10 +66,9 @@ The breadcrumb page name ("Translation Management System") is 20px Regular, usin
 It is set inside the Breadcrumb component, so every screen that uses TopBar picks it up.
 
 ## Page title
-PageTitle is 20px Medium (`title` text role). The old 24px `nav` size is no longer used and was removed.
+PageTitle is 18px Medium (`heading` text role). The old 24px `nav` size is no longer used and was removed.
 PageHeading lays out the back arrow and the title: the arrow sits in a box one title line tall, so it is
-centered on the title line, and the version line under it lines up with the title text.
+centered on the title line. The version line sits directly under the title with no gap and lines up with the title text.
 
 ## Subtext spacing
-`subtext` (a line of text and the smaller line under it) is 6px, up from 4. It covers the page title →
-version pill, an input → its helper or error line, User Name → Admin, the upload box → its message, and banner title → message.
+`subtext` (a line of text and the smaller line under it) is 6px, up from 4. It covers an input → its helper or error line, User Name → Admin, the upload box → its message, and banner title → message.
