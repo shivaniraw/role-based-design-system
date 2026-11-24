@@ -38,7 +38,7 @@ export function FileUpload({ label, file, onSelect, onRemove, error, accept = "i
   };
 
   return (
-    <Stack relation="subtext">
+    <Stack relation="related">
       <label htmlFor={id} className="text-body font-medium text-text-muted">
         {label}
       </label>

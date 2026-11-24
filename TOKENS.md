@@ -48,7 +48,7 @@ Language, Error, Success, Checkbox On/Off).
 ## Where Figma and the spacing tokens disagree (spacing tokens kept)
 | Space | Figma | Spacing token used |
 |---|---|---|
-| Field label to input | 10 | `subtext` 6 |
+| Field label to input | 10 | `related` 12 |
 | Select Page to Select Module, filter to filter, tabs to table | 24 | `group` 28 |
 | Tab to tab | 30 | `group` 28 |
 | Option box side padding | 12 (component) / 6 (screen) | `option-card-x` 6 |
@@ -68,10 +68,10 @@ It is set inside the Breadcrumb component, so every screen that uses TopBar pick
 ## Page title
 PageTitle is 18px Medium (`heading` text role). The old 24px `nav` size is no longer used and was removed.
 PageHeading lays out the back arrow and the title: the arrow sits in a box one title line tall, so it is
-centered on the title line. The version line sits directly under the title with no gap and lines up with the title text.
+centered on the title line. The version line sits 6px (`subtext`) under the title and lines up with the title text.
 
 ## Subtext spacing
-`subtext` (a line of text and the smaller line under it) is 6px, up from 4. It covers a field label → its input (Select Page, Select Module and every other labelled field), an input → its helper or error line, User Name → Admin, the upload box → its message, and banner title → message.
+`subtext` (a line of text and the smaller line under it) is 6px, up from 4. It covers an input → its helper or error line, User Name → Admin, the upload box → its message, and banner title → message.
 
 ## Pulled from Figma (24 Nov)
 | What | Before | Now |

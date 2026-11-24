@@ -15,7 +15,7 @@ export interface PageHeadingProps {
 /**
  * Back arrow + page title, with an optional line under the title.
  * The arrow sits in a box exactly one title line tall (`h-lh` inside `text-title`, PageTitle's size), so it is always
- * centered on the title's first line, whatever the title size. The meta line sits directly under the title (no gap) and lines up with the title text.
+ * centered on the title's first line, whatever the title size. The meta line sits `subtext` (6) under the title and lines up with the title text.
  */
 export function PageHeading({ title, backLabel = "Back", onBack, meta }: PageHeadingProps) {
   return (
@@ -23,7 +23,7 @@ export function PageHeading({ title, backLabel = "Back", onBack, meta }: PageHea
       <span className="flex h-lh shrink-0 items-center text-title">
         <BackButton label={backLabel} onClick={onBack} />
       </span>
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-subtext">
         <PageTitle>{title}</PageTitle>
         {meta}
       </div>

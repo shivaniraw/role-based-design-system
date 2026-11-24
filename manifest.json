@@ -25,7 +25,7 @@
       "px": 6,
       "use": "A line of text and the smaller line under it",
       "examples": [
-        "field label -> its input (Select Page -> its dropdown)",
+        "page title -> its Version row",
         "User Name -> Admin",
         "input -> its helper or error line"
       ]
@@ -61,6 +61,7 @@
       "px": 12,
       "use": "A pair that does one job; items in a list; a heading and the list it names. Not tabs",
       "examples": [
+        "label -> input",
         "nav items",
         "cards in a list",
         "All Apps -> its list",
@@ -122,7 +123,7 @@
       "name": "PageHeading",
       "kind": "layout",
       "props": "title: string; backLabel?: string; onBack?: () => void; meta?: ReactNode",
-      "use": "Back arrow + PageTitle, with an optional line directly under the title (VersionBadge), no gap. The arrow is centered on the title line.",
+      "use": "Back arrow + PageTitle, with an optional line 6px (subtext) under the title (VersionBadge). The arrow is centered on the title line.",
       "avoid": "Don't build a BackButton + PageTitle row by hand.",
       "figma": []
     },
