@@ -37,7 +37,7 @@ const track = (width: ColumnWidth) => `var(--spacing-col-${width})`;
  * Figma: Data Table (32:184).
  * - Box: radius 12, 1px #E5E7EB, clips its content.
  * - Header: 67 tall, #4C86F9, Table/Header 16 Medium white at -2%, 16 side padding, white dividers.
- * - Rows: 80 tall, striped #F9FAFB / white starting grey, #E5E7EB row lines, #BABABA column dividers,
+ * - Rows: 60 tall (content centered, no vertical padding), striped #F9FAFB / white starting grey, #E5E7EB row lines, #BABABA column dividers,
  *   12 side padding, Body/14 #333333.
  * - Wider than its card: it scrolls sideways, with the 12px scrollbar sitting below the table.
  */
@@ -90,7 +90,7 @@ export function DataTable<Row>({ columns, rows, getRowKey, ariaLabel, emptyMessa
                     key={column.key}
                     role="cell"
                     className={cx(
-                      "flex min-w-zero items-center px-inset-field-x py-inset-control-y text-table text-text",
+                      "flex min-w-zero items-center px-inset-field-x text-table text-text",
                       index !== last && "border-r border-border-divider",
                     )}
                   >

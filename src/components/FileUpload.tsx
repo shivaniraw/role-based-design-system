@@ -3,6 +3,7 @@ import { Icon } from "../icons";
 import { cx } from "../lib/cx";
 import { Stack } from "../primitives/Stack";
 import { BaseText } from "../primitives/text/BaseText";
+import { DashedOutline } from "./DashedOutline";
 import { DeleteButton } from "./icon-buttons/DeleteButton";
 
 export interface UploadedFile {
@@ -22,7 +23,7 @@ export interface FileUploadProps {
 }
 
 /**
- * Figma: Image Upload (5:65). Dashed 1px #BEBEBE, radius 14, 36 upload icon #757575, 12 gap,
+ * Figma: Image Upload (5:65). 140 tall, dashed 1px #BEBEBE (dash 4, gap 2), radius 14, 36 upload icon #757575, 12 gap,
  * Body/14 #5C5C5C with underlined "Browse screenshot". Drag-over, filled and error looks are derived.
  */
 export function FileUpload({ label, file, onSelect, onRemove, error, accept = "image/*", disabled }: FileUploadProps) {
@@ -43,11 +44,9 @@ export function FileUpload({ label, file, onSelect, onRemove, error, accept = "i
       </label>
       <Stack relation="subtext">
         <div
-          className={cx(
-            "relative flex h-upload-h items-center justify-center rounded-upload border border-dashed bg-surface-card",
-            error ? "border-feedback-error" : dragging ? "border-action bg-action-tint" : "border-border-dashed",
-          )}
+          className={cx("relative flex h-upload-h items-center justify-center rounded-upload", dragging && !error ? "bg-action-tint" : "bg-surface-card")}
         >
+          <DashedOutline radius="upload" tone={error ? "error" : dragging ? "active" : "default"} />
           {file ? (
             <>
               {file.previewUrl ? (

@@ -20,7 +20,7 @@ const TRIGGER = {
   cell: "h-field-h rounded-field border border-border-control bg-surface-card px-inset-field-x shadow-dropdown text-input",
   /** Figma: App Selector. 54 tall pill, #BEBEBE border, Selector shadow, 20 Medium #7C7C7C. */
   selector:
-    "h-selector-h rounded-pill border border-border-dashed bg-surface-card pl-inset-control-x pr-inset-container-x shadow-selector text-title font-medium",
+    "h-selector-h rounded-pill border border-border-dashed bg-surface-card pl-inset-control-x pr-inset-container-x shadow-selector text-large font-medium",
 } as const;
 
 const VALUE_TONE = {

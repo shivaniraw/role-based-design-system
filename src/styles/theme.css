@@ -68,7 +68,7 @@
   --spacing-textarea-h: 68px; /* Figma: Textarea Field */
   --spacing-tab-h: 56px; /* Figma: Tab */
   --spacing-topbar-h: 72px; /* Figma: Top Bar */
-  --spacing-row-h: 80px; /* Figma: Table Cell */
+  --spacing-row-h: 60px; /* Figma: Table Cell */
   --spacing-header-row-h: 67px; /* Figma: Table Header Cell */
   --spacing-icon: 24px; /* Figma: Icon/* frame */
   --spacing-icon-sm: 16px;
@@ -76,11 +76,11 @@
   --spacing-icon-lg: 36px; /* Figma: upload icon */
   --spacing-logo-w: 43px; /* Figma: Logo */
   --spacing-logo-h: 42px;
-  --spacing-nav-w: 379px; /* Figma: Left Nav bar */
+  --spacing-nav-w: 330px; /* Figma: Left Nav bar */
   --spacing-nav-item-h: 54px; /* Figma: Nav tabs (selected is 51 in Figma; kept 54 so rows don't jump) */
   --spacing-modal-w: 784px; /* Figma: 704 form + 40 panel inset each side */
-  --spacing-screenshot-w: 31px; /* Figma: table thumbnail 31 x 61.5 */
-  --spacing-screenshot-h: 62px;
+  --spacing-screenshot-w: 31px; /* Figma: table thumbnail 31 x 48, 6 above and below in a 60 row */
+  --spacing-screenshot-h: 48px;
   --spacing-badge-h: 22px;
   --spacing-version-h: 32px; /* Figma: version pill */
   --spacing-count-badge: 22px; /* Figma: tab badge 22 x 22 */
@@ -88,7 +88,7 @@
   --spacing-hairline: 1px;
   --spacing-zero: 0px; /* used as inset-zero, min-w-zero, etc. */
   --spacing-checkbox: 18px; /* Figma: checkbox glyph inside its 24 frame */
-  --spacing-upload-h: 100px; /* Figma: Image Upload in the modal, 704 x 100 */
+  --spacing-upload-h: 140px; /* Figma: Image Upload in the modal, 704 x 140 */
   --spacing-toast-w: 416px; /* Figma: Toast / Success */
   --spacing-avatar: 44px; /* Figma: Avatar */
   --spacing-ring: 2px;
@@ -174,13 +174,13 @@
   --font-weight-medium: 500;
   --font-weight-bold: 700; /* Figma: "Version 1" in the version pill */
 
-  --text-display: 28px; /* Figma: Display/28 Medium (brand name) */
-  --text-display--line-height: 1.25;
-  --text-nav-item: 18px; /* Side nav: item labels */
+  --text-large: 20px; /* 20 Regular/Medium: top bar breadcrumb, app selector, avatar letter */
+  --text-large--line-height: 1.25;
+  --text-nav-item: 18px; /* Figma: Nav tab/18 Regular: side nav item labels */
   --text-nav-item--line-height: 1.25;
-  --text-title: 20px; /* Title/20 Medium: page title, modal title, side nav selector; breadcrumb uses it at Regular */
+  --text-title: 18px; /* Figma: Title/18 Medium: brand name, page title, modal title */
   --text-title--line-height: 1.25;
-  --text-heading: 18px; /* Tab/18 Medium and the page title */
+  --text-heading: 18px; /* Figma: Tab/18 Medium */
   --text-heading--line-height: 1.25;
   --text-input: 16px; /* Figma: Input/16 Regular, Table/Header 16 Medium */
   --text-input--line-height: 1.3;
@@ -208,6 +208,10 @@
 
 /* Emitted even though no utility uses them: DataTable builds its grid columns from these. */
 @theme static {
+  /* Dashed strokes (Figma: dash 4, gap 2). CSS `border-dashed` can't set the pattern, so dashed
+     outlines are drawn as an SVG stroke that reads this. */
+  --dash-border-dashed: 4 2;
+
   /* Table column widths, from the Figma tables:
      Data Table 66 / 138 / 214 / 221 / 200 / 221 / 300; Active Translation 66 / 170 / 176 / 174 / 126 / 126 / 96 */
   --spacing-col-2xs: 66px;

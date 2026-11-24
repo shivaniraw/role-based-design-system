@@ -4,7 +4,7 @@
 - Spacing: all 8 gap relations and 9 insets and the 6 exceptions, from the OneHub spacing doc.
 - Brand blue `#4285F4` (you confirmed).
 - `#F6F6F6` neutral surface, `#424242` secondary text, radius 10, "Button/16 Medium" (read from Figma variables on Base Button).
-- Heights from Figma components: button 44, tab 56, top bar 72, avatar 44, left nav 379 wide.
+- Heights from Figma components: button 44, tab 56, top bar 72, avatar 44, left nav 330 wide.
 
 ## Approximated from screenshots (verify against the Figma variables export)
 | Token | Used | Note |
@@ -16,7 +16,7 @@
 | `surface-page`, `surface-subtle` | #F5F5F5, #F8F9FA | |
 | `feedback-error / success` and their backgrounds | #D93025 / #FCE8E6, #1E8E3E / #E6F4EA | Google palette |
 | Type sizes | title 20, heading 18, nav 16, body 14, table 13, caption 12 | Only Button 16 is confirmed |
-| `field-h` 40, `row-h` 56, `modal-w` 760, `upload-h` 140, column widths | | Read from screenshots |
+| `field-h` 40, `row-h` 60, `modal-w` 784, `upload-h` 140, column widths | | Read from screenshots |
 | Radii field 8, badge 6, panel 20 | | |
 
 ## Differences from Figma, fixed in code
@@ -59,7 +59,7 @@ One spacing change follows Figma: "All Apps" to the nav list is now `group` (Fig
 
 ## Side nav type
 Nav item labels are 18px (`text-nav-item`); the "All Apps" heading is 20px (`title` text role). The language
-selector was already 20px. The brand name stays at Display 28.
+selector is 20px.
 
 ## Top bar type
 The breadcrumb page name ("Translation Management System") is 20px Regular, using the `title` text role.
@@ -72,3 +72,18 @@ centered on the title line. The version line sits directly under the title with 
 
 ## Subtext spacing
 `subtext` (a line of text and the smaller line under it) is 6px, up from 4. It covers an input → its helper or error line, User Name → Admin, the upload box → its message, and banner title → message.
+
+## Pulled from Figma (24 Nov)
+| What | Before | Now |
+|---|---|---|
+| Table row height (`row-h`) | 80 | 60, content centered, no vertical padding |
+| Table thumbnail (`screenshot`) | 31 x 62 | 31 x 48 (6 above and below) |
+| Left nav width (`nav-w`) | 379 | 330 |
+| Title style (`text-title`) | 20 Medium | 18 Medium: brand name, page title, modal title |
+| Nav tab text (`text-nav-item`) | 18 Regular | 18 Regular (matches the Figma style) |
+| "All Apps" heading | 20 | Label 14 Medium, muted (as in Figma) |
+| Upload box (`upload-h`) | 100 | 140 |
+| Dashed stroke (`--dash-border-dashed`) | CSS dashed | 1px, dash 4, gap 2, drawn by the internal DashedOutline so it matches Figma |
+
+The 20px size the breadcrumb, app selector and avatar letter use is now its own token, `text-large`,
+so changing the Title style doesn't move them. The old 28px `display` size is gone.

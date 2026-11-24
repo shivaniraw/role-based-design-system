@@ -14,7 +14,7 @@ export interface BreadcrumbProps {
 }
 
 /**
- * Figma: Top Bar breadcrumb. Home 24 (#757575), chevron 24 (#999999), title 20 Regular #5C5C5C (`title` text role).
+ * Figma: Top Bar breadcrumb. Home 24 (#757575), chevron 24 (#999999), title 20 Regular #5C5C5C (`large` text role).
  * Parts of one element, so the gap is `attached` (8).
  */
 export function Breadcrumb({ items, homeHref = "/" }: BreadcrumbProps) {
@@ -32,13 +32,13 @@ export function Breadcrumb({ items, homeHref = "/" }: BreadcrumbProps) {
             </span>
             {item.href && !last ? (
               <a href={item.href} className="focus-visible:outline-2 focus-visible:outline-action">
-                <BaseText variant="title" weight="regular" tone="tertiary">
+                <BaseText variant="large" tone="tertiary">
                   {item.label}
                 </BaseText>
               </a>
             ) : (
               <span aria-current={last ? "page" : undefined}>
-                <BaseText variant="title" weight="regular" tone="tertiary">
+                <BaseText variant="large" tone="tertiary">
                   {item.label}
                 </BaseText>
               </span>

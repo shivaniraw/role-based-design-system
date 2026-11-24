@@ -9,14 +9,14 @@ import { Breadcrumb, type BreadcrumbItem } from "./Breadcrumb";
 import { ProfileMenu } from "./Profile";
 import { Listbox, type SelectOption } from "./select/Listbox";
 
-/** Figma: Logo (32:60) + brand name. Blue 43 x 42 tile, radius 8, white translate mark; name Display/28 Medium. */
+/** Figma: Logo (32:60) + brand name. Blue 43 x 42 tile, radius 8, white translate mark; name Title/18 Medium. */
 export function Logo({ name }: { name: string }) {
   return (
     <div className="flex items-center gap-attached">
       <span className="flex h-logo-h w-logo-w shrink-0 items-center justify-center rounded-field bg-action text-on-action" aria-hidden="true">
         <Icon name="translate" />
       </span>
-      <BaseText variant="display" tracking="nav">
+      <BaseText variant="title" tracking="nav">
         {name}
       </BaseText>
     </div>
@@ -75,7 +75,7 @@ export interface LeftNavProps {
 }
 
 /**
- * Figma: Left Nav bar (32:63). 379 wide, white, 1px right border, inset 16 across / 14 down.
+ * Figma: Left Nav bar (32:63). 330 wide, white, 1px right border, inset 16 across / 14 down.
  * Brand, selector, "All Apps" and the list are `group` apart (Figma shows ~30); items are `choices` apart.
  */
 export function LeftNav({
@@ -96,7 +96,7 @@ export function LeftNav({
         </Box>
         <AppSelector value={language} options={languageOptions} onChange={onLanguageChange} ariaLabel="Language" />
         <Box inset="controlX">
-          <BaseText variant="title" tone="secondary">
+          <BaseText variant="label" tone="muted">
             {sectionLabel}
           </BaseText>
         </Box>

@@ -10,7 +10,7 @@ export interface AvatarProps {
 export function Avatar({ name }: AvatarProps) {
   return (
     <span className="ds-avatar-ring inline-flex size-avatar shrink-0 rounded-pill p-ring" aria-hidden="true">
-      <span className="flex size-full items-center justify-center rounded-pill bg-surface-card text-title font-medium text-action">
+      <span className="flex size-full items-center justify-center rounded-pill bg-surface-card text-large font-medium text-action">
         {name.trim().charAt(0).toUpperCase()}
       </span>
     </span>

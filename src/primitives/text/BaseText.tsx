@@ -3,12 +3,12 @@
 import type { BaseProps } from "../../tokens";
 import { cx } from "../../lib/cx";
 
-export type TextVariant = "display" | "title" | "heading" | "input" | "body" | "label" | "table" | "caption";
+export type TextVariant = "large" | "title" | "heading" | "input" | "body" | "label" | "table" | "caption";
 export type TextTone = "default" | "secondary" | "tertiary" | "muted" | "subtle" | "placeholder" | "action" | "error" | "success" | "onAction";
 export type TextWeight = "regular" | "medium";
 
 const SIZE: Record<TextVariant, string> = {
-  display: "text-display",
+  large: "text-large",
   input: "text-input",
   title: "text-title",
   heading: "text-heading",
@@ -19,7 +19,7 @@ const SIZE: Record<TextVariant, string> = {
 };
 
 const DEFAULT_WEIGHT: Record<TextVariant, TextWeight> = {
-  display: "medium",
+  large: "regular",
   input: "regular",
   title: "medium",
   heading: "medium",
