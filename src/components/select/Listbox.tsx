@@ -16,9 +16,9 @@ const TRIGGER = {
   /** Figma: Select Field Input. 40 tall, #E0E0E0 border, Input shadow, 16 Regular. */
   field:
     "h-field-h rounded-field border border-border bg-surface-card px-inset-field-x shadow-input text-input",
-  /** Figma: Table Cell / Dropdown. 40 tall, #BDBDBD border, Dropdown shadow, 16 Regular #424242. */
-  cell: "h-field-h rounded-field border border-border-control bg-surface-card px-inset-field-x shadow-dropdown text-input",
-  /** Figma: App Selector. 54 tall pill, #BEBEBE border, Selector shadow, 20 Medium #7C7C7C. */
+  /** Figma: Table Cell / Dropdown. 40 tall, #BDBDBD border, Dropdown shadow, Body/14 Regular #424242. */
+  cell: "h-field-h rounded-field border border-border-control bg-surface-card px-inset-field-x shadow-dropdown text-body",
+  /** Figma: App Selector. 46 tall pill, #BEBEBE border, Selector shadow, 20 Medium #7C7C7C. */
   selector:
     "h-selector-h rounded-pill border border-border-dashed bg-surface-card pl-inset-control-x pr-inset-container-x shadow-selector text-large font-medium",
 } as const;
@@ -228,7 +228,8 @@ export function Listbox({
                     onPointerEnter={() => setActive(index)}
                     onClick={() => choose(index)}
                     className={cx(
-                      "flex h-field-h cursor-pointer items-center text-input",
+                      "flex h-field-h cursor-pointer items-center",
+                      look === "cell" ? "text-body" : "text-input",
                       look === "selector" ? "px-inset-control-x" : "px-inset-field-x",
                       isSelected ? "font-medium text-action" : "text-text-secondary",
                       index === active ? "bg-action-subtle" : isSelected && "bg-action-tint",

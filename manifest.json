@@ -610,7 +610,7 @@
       "name": "DropdownCell",
       "kind": "data",
       "props": "ariaLabel, options, value, onChange",
-      "use": "Dropdown inside a table cell.",
+      "use": "Dropdown inside a table cell. Body text, 14 Regular.",
       "avoid": "",
       "figma": []
     },
