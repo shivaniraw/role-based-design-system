@@ -43,7 +43,6 @@
       "use": "Other parts of one element",
       "examples": [
         "logo -> its name",
-        "page title -> its Version row",
         "breadcrumb items",
         "version badge -> published text",
         "tab label -> count badge",
@@ -62,6 +61,7 @@
       "use": "A pair that does one job; items in a list; a heading and the list it names. Not tabs",
       "examples": [
         "label -> input",
+        "page title -> its Version row",
         "nav items",
         "cards in a list",
         "All Apps -> its list",
@@ -123,7 +123,7 @@
       "name": "PageHeading",
       "kind": "layout",
       "props": "title: string; backLabel?: string; onBack?: () => void; meta?: ReactNode",
-      "use": "Back arrow + PageTitle, with an optional line 8px (attached) under the title (VersionBadge). The arrow is centered on the title line.",
+      "use": "Back arrow + PageTitle, with an optional line 12px (related) under the title (VersionBadge). The arrow is centered on the title line.",
       "avoid": "Don't build a BackButton + PageTitle row by hand.",
       "figma": []
     },
