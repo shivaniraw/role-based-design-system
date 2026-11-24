@@ -68,7 +68,7 @@ It is set inside the Breadcrumb component, so every screen that uses TopBar pick
 ## Page title
 PageTitle is 18px Medium (`heading` text role). The old 24px `nav` size is no longer used and was removed.
 PageHeading lays out the back arrow and the title: the arrow sits in a box one title line tall, so it is
-centered on the title line. The version line sits 6px (`subtext`) under the title and lines up with the title text.
+centered on the title line. The version line sits 8px (`attached`) under the title and lines up with the title text.
 
 ## Subtext spacing
 `subtext` (a line of text and the smaller line under it) is 6px, up from 4. It covers an input → its helper or error line, User Name → Admin, the upload box → its message, and banner title → message.

@@ -3,7 +3,7 @@
     "subtext": {
       "$type": "dimension",
       "$value": { "value": 6, "unit": "px" },
-      "$description": "A line of text and the smaller line under it that describes it. Examples: page title → its Version row, User Name → Admin, an input → its helper line."
+      "$description": "A line of text and the smaller line under it that describes it. Examples: User Name → Admin, an input → its helper line."
     },
     "icon-label": {
       "$type": "dimension",
@@ -13,7 +13,7 @@
     "attached": {
       "$type": "dimension",
       "$value": { "value": 8, "unit": "px" },
-      "$description": "Other parts of one element. Examples: logo → its name, breadcrumb items, version badge → published text, tab label → count badge, table → its scrollbar."
+      "$description": "Other parts of one element. Examples: logo → its name, page title → its Version row, breadcrumb items, version badge → published text, tab label → count badge, table → its scrollbar."
     },
     "choices": {
       "$type": "dimension",
