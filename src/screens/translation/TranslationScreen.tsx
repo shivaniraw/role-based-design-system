@@ -225,7 +225,7 @@ export function TranslationScreen({
                 <Inline relation="attached">
                   <Badge kind="version">Version 1</Badge>
                   <Text variant="caption" tone="secondary">
-                    Published on: 23 Apr 2026, 15:30 IST by Disha Dua
+                    Published on: 23 Apr 2026, 15:30 IST by Admin
                   </Text>
                 </Inline>
               </Stack>
