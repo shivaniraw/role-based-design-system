@@ -59,4 +59,8 @@ One spacing change follows Figma: "All Apps" to the nav list is now `group` (Fig
 
 ## Side nav type
 Nav item labels and the "All Apps" heading are 20px (`text-nav-item` and the `title` text role). The language
-selector was already 20px. The brand name stays at Display 28, and the breadcrumb and page title stay at 24.
+selector was already 20px. The brand name stays at Display 28, and the page title stays at 24.
+
+## Top bar type
+The breadcrumb page name ("Translation Management System") is 20px Regular, using the `title` text role.
+It is set inside the Breadcrumb component, so every screen that uses TopBar picks it up.

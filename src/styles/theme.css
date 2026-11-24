@@ -176,11 +176,11 @@
 
   --text-display: 28px; /* Figma: Display/28 Medium (brand name) */
   --text-display--line-height: 1.25;
-  --text-nav: 24px; /* Figma: Nav/24 Regular, Heading/24 Regular (breadcrumb) */
+  --text-nav: 24px; /* Figma: page title (24 Medium) */
   --text-nav--line-height: 1.25;
   --text-nav-item: 20px; /* Side nav: item labels and the "All Apps" heading */
   --text-nav-item--line-height: 1.25;
-  --text-title: 20px; /* Figma: Title/20 Medium */
+  --text-title: 20px; /* Figma: Title/20 Medium; also the side nav selector and the top bar breadcrumb (20 Regular) */
   --text-title--line-height: 1.25;
   --text-heading: 18px; /* Figma: Tab/18 Medium */
   --text-heading--line-height: 1.25;
