@@ -115,7 +115,6 @@ function Components() {
       key: "module",
       header: "Module",
       width: "3xl",
-      headerEdit: { label: "Edit module details", onClick: () => undefined },
       cell: (r) => (
         <DropdownCell
           ariaLabel="Module"
@@ -129,6 +128,7 @@ function Components() {
       key: "key",
       header: "Developer key",
       width: "4xl",
+      headerEdit: { label: "Edit developer keys", onClick: () => undefined },
       cell: (r) => (
         <InputCell
           ariaLabel="Developer key"

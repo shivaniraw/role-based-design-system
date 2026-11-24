@@ -7,10 +7,10 @@ interface PendingKeysTableProps {
   /** A developer key that is already taken. Its cell shows the error state. */
   duplicateKey?: string;
   onChange: (id: string, patch: Partial<PendingKey>) => void;
-  onEditModules: () => void;
+  onEditDevKeys: () => void;
 }
 
-export function PendingKeysTable({ rows, duplicateKey, onChange, onEditModules }: PendingKeysTableProps) {
+export function PendingKeysTable({ rows, duplicateKey, onChange, onEditDevKeys }: PendingKeysTableProps) {
   const columns: Column<PendingKey>[] = [
     { key: "no", header: "Sr. No.", width: "2xs", cell: (_row, index) => <NumberCell>{index + 1}</NumberCell> },
     { key: "shot", header: "UI Mockup Screenshot", width: "md", cell: (row) => <ScreenshotCell src={sampleScreenshot} alt={`Screenshot for ${row.page}`} /> },
@@ -19,7 +19,6 @@ export function PendingKeysTable({ rows, duplicateKey, onChange, onEditModules }
       key: "module",
       header: "Module",
       width: "3xl",
-      headerEdit: { label: "Edit module details", onClick: onEditModules },
       cell: (row) => (
         <DropdownCell
           ariaLabel={`Module for ${row.page}`}
@@ -35,6 +34,7 @@ export function PendingKeysTable({ rows, duplicateKey, onChange, onEditModules }
       key: "devKey",
       header: "Developer key",
       width: "4xl",
+      headerEdit: { label: "Edit developer keys", onClick: onEditDevKeys },
       cell: (row) => (
         <InputCell
           ariaLabel={`Developer key for row ${row.id}`}

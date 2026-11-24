@@ -236,7 +236,7 @@ export function TranslationScreen({
               <Stack relation="group">
                 <Tabs items={tabs} value={tab} onChange={(value) => setTab(value as TabValue)} ariaLabel="Translation status" />
                 {tab === "keys" ? (
-                  <PendingKeysTable rows={pendingKeys} duplicateKey={rejectedKey} onChange={updatePendingKey} onEditModules={() => undefined} />
+                  <PendingKeysTable rows={pendingKeys} duplicateKey={rejectedKey} onChange={updatePendingKey} onEditDevKeys={() => undefined} />
                 ) : null}
                 {tab === "active" && activeLayout === "combined" ? (
                   <ActiveTranslationsCombinedTable
